@@ -6,21 +6,16 @@
 
 package br.edu.ifnmg.tads.SISCAD.DomainModel;
 
-import java.util.Date;
-
 /**
  *
  * @author Aline
  */
-public class Avaliacao {
+public class Responsavel extends Pessoa{
     
     private int codigo;
-    private Date data;
-    private String observação;
-    private Medidas medidas;
-    private AtestadoMedico atestado;
-    private Date validade;
-    private Funcionario funcionario;//codFuncionario
-    
-    
+
+    public Responsavel() {
+    }
+
+  
 }

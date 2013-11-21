@@ -17,6 +17,7 @@ public class TesteCarga {
     private double cargaSupramaxima;
     private int repeticoesMaximas;
     private Date data;
+    private Funcionario funcionario;
 
     public TesteCarga() {
     }
@@ -51,6 +52,14 @@ public class TesteCarga {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
     
