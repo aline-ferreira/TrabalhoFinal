@@ -26,7 +26,7 @@ public class Pessoa {
     private String Rg;
     private String Cpf;
     private Date DataNascimento;
-    private char sexo;
+    private String sexo;
     private List<Email> emails;
     private List<Endereco> enderecos;
     private List<Telefone> telefones;
@@ -120,11 +120,11 @@ public class Pessoa {
         }
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -136,7 +136,7 @@ public class Pessoa {
         hash = 41 * hash + Objects.hashCode(this.Rg);
         hash = 41 * hash + Objects.hashCode(this.Cpf);
         hash = 41 * hash + Objects.hashCode(this.DataNascimento);
-        hash = 41 * hash + this.sexo;
+       // hash = 41 * hash + this.sexo;
         hash = 41 * hash + Objects.hashCode(this.emails);
         hash = 41 * hash + Objects.hashCode(this.enderecos);
         hash = 41 * hash + Objects.hashCode(this.telefones);
