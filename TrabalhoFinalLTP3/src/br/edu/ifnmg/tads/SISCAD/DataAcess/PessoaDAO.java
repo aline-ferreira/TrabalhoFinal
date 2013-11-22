@@ -140,6 +140,23 @@ public class PessoaDAO extends Dao {
             return null;
         }
     }
+     
+     public boolean Remover(Pessoa obj) {
+        if (obj.getCodigo() >= 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("delete from pessoa where codPessoa=?");
+                sql.setInt(1, obj.getCodigo());
+                //sql.setDate(2, new java.sql.Date( obj.getDataNascimento().getTime() ));
+                sql.executeUpdate();
+                return true;
+
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                return false;
+            }
+        }
+        return true;
+    }
     
     
 
