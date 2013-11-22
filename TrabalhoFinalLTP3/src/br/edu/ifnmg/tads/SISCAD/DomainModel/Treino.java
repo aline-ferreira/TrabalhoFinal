@@ -16,6 +16,49 @@ public class Treino {
     private int serie;
     private double duração;
     private Exercicio exercicio;
+
+    public Treino() {
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getRepetições() {
+        return repetições;
+    }
+
+    public void setRepetições(int repetições) {
+        this.repetições = repetições;
+    }
+
+    public int getSerie() {
+        return serie;
+    }
+
+    public void setSerie(int serie) {
+        this.serie = serie;
+    }
+
+    public double getDuração() {
+        return duração;
+    }
+
+    public void setDuração(double duração) {
+        this.duração = duração;
+    }
+
+    public Exercicio getExercicio() {
+        return exercicio;
+    }
+
+    public void setExercicio(Exercicio exercicio) {
+        this.exercicio = exercicio;
+    }
     
     
     
