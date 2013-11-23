@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Funcionario extends Pessoa {
     private int codigo;
     private Cargo cargo;
+    private Pessoa pessoa;
     private List<Horario> horarios;
     
     public Funcionario() {
@@ -32,31 +33,15 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + this.codigo;
-        hash = 47 * hash + Objects.hashCode(this.cargo);
-        return hash;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Funcionario other = (Funcionario) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.cargo, other.cargo)) {
-            return false;
-        }
-        return true;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
+
+   
     
     
     
