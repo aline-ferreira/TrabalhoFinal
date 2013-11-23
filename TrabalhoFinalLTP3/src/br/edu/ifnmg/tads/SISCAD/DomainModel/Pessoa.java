@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.SISCAD.DomainModel;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.regex.Pattern;
  * @author Aline
  */
 public class Pessoa {
-    
+
     private int codigo;
     private String nome;
     private String Rg;
@@ -41,8 +40,8 @@ public class Pessoa {
     public int getCodigo() {
         return codigo;
     }
-    
-       public void addEmail(Email email) {
+
+    public void addEmail(Email email) {
         if (!emails.contains(email)) {
             emails.add(email);
         }
@@ -57,8 +56,39 @@ public class Pessoa {
     public List<Email> getEmails() {
         return emails;
     }
+
+    public void addTelefone(Telefone telefone) {
+        if (!telefones.contains(telefone)) {
+            telefones.add(telefone);
+        }
+    }
+
+    public void removeTelefone(Telefone telefone) {
+        if (telefones.contains(telefone)) {
+            telefones.remove(telefone);
+        }
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
     
-    
+    public void addEndereco(Endereco endereco) {
+        if (!enderecos.contains(endereco)) {
+            enderecos.add(endereco);
+        }
+    }
+
+    public void removeEndereco(Endereco endereco) {
+        if (enderecos.contains(endereco)) {
+            enderecos.remove(endereco);
+        }
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
 
     public void setCodigo(int codigo) throws Exception {
         if (codigo > 0) {
@@ -73,15 +103,15 @@ public class Pessoa {
     }
 
     public void setNome(String nome) throws Exception {
-        Pattern patternNome;
+       /* Pattern patternNome;
         patternNome = Pattern.compile("[\\w\\s],{3,}");
         Matcher verifica = patternNome.matcher(nome);
-        if (verifica.matches()) {
+        if (verifica.matches()) {*/
             this.nome = nome;
-        } else {
+        /*} else {
             throw new Exception("Codigo Inválido!(Somente são aceitos nomes com"
                     + "no minimo 3 caracters e inicial maiuscula)");
-        }
+        }*/
 
     }
 
@@ -136,7 +166,7 @@ public class Pessoa {
         hash = 41 * hash + Objects.hashCode(this.Rg);
         hash = 41 * hash + Objects.hashCode(this.Cpf);
         hash = 41 * hash + Objects.hashCode(this.DataNascimento);
-       // hash = 41 * hash + this.sexo;
+        // hash = 41 * hash + this.sexo;
         hash = 41 * hash + Objects.hashCode(this.emails);
         hash = 41 * hash + Objects.hashCode(this.enderecos);
         hash = 41 * hash + Objects.hashCode(this.telefones);
@@ -186,12 +216,4 @@ public class Pessoa {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-
-
-
-
-
 }
-
-

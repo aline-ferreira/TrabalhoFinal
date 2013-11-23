@@ -15,13 +15,13 @@ import java.util.regex.Pattern;
  * @author Aline
  */
 public class Endereco {
-     private int codigo;
+    private int codigo;
     private String rua;
     private String cidade;
     private String bairro;
     private String cep;
     private int numero;
-    private String UF;
+   // private String UF;
 
     public Endereco() {
     }
@@ -45,14 +45,14 @@ public class Endereco {
     }
 
     public void setRua(String rua) throws Exception {
-        Pattern patternRua;
-        patternRua = Pattern.compile("[\\w\\s]");
-        Matcher verifica = patternRua.matcher(rua);
-        if (verifica.matches()) {
+        //Pattern patternRua;
+        //patternRua = Pattern.compile("[\\w\\s]");
+        //Matcher verifica = patternRua.matcher(rua);
+        //if (verifica.matches()) {
             this.rua = rua;
-        } else {
-            throw new Exception("nome inválido!");
-        }
+       // } else {
+       //     throw new Exception("nome inválido!");
+       // }
     }
 
     public String getCidade() {
@@ -61,14 +61,14 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) throws Exception {
-        Pattern patternCidade;
-        patternCidade = Pattern.compile("[\\w\\s]");
-        Matcher verifica = patternCidade.matcher(cidade);
-        if (verifica.matches()) {
+        //Pattern patternCidade;
+        //patternCidade = Pattern.compile("[\\w\\s]");
+        //Matcher verifica = patternCidade.matcher(cidade);
+        //if (verifica.matches()) {
             this.cidade = cidade;
-        } else {
-            throw new Exception("nome inválido!");
-        }
+        //} else {
+          //  throw new Exception("nome inválido!");
+        //}
     }
 
     public String getBairro() {
@@ -77,14 +77,14 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) throws Exception {
-        Pattern patternBairro;
-        patternBairro = Pattern.compile("[\\w\\s]");
-        Matcher verifica = patternBairro.matcher(bairro);
-        if (verifica.matches()) {
+        //Pattern patternBairro;
+        //patternBairro = Pattern.compile("[\\w\\s]");
+        //Matcher verifica = patternBairro.matcher(bairro);
+        //if (verifica.matches()) {
             this.bairro = bairro;
-        } else {
-            throw new Exception("nome inválido!");
-        }
+        //} else {
+            //throw new Exception("nome inválido!");
+        //}
     }
 
     public String getCep() {
@@ -92,7 +92,7 @@ public class Endereco {
     }
 
     public void setCep(String cep) throws Exception {
-        Pattern padraoCep = Pattern.compile("\\d{5}-\\d{3}");
+       Pattern padraoCep = Pattern.compile("\\d{5}-\\d{3}");
         Matcher verifica = padraoCep.matcher(cep);
         if (verifica.matches()) {
             this.cep = cep;
@@ -114,14 +114,7 @@ public class Endereco {
         }
     }
 
-    public String getUF() {
-        return UF;
-    }
-
-    public void setUF(String UF) {
-        this.UF = UF;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -131,7 +124,7 @@ public class Endereco {
         hash = 67 * hash + Objects.hashCode(this.bairro);
         hash = 67 * hash + Objects.hashCode(this.cep);
         hash = 67 * hash + this.numero;
-        hash = 67 * hash + Objects.hashCode(this.UF);
+       // hash = 67 * hash + Objects.hashCode(this.UF);
         return hash;
     }
 
@@ -162,9 +155,9 @@ public class Endereco {
         if (this.numero != other.numero) {
             return false;
         }
-        if (!Objects.equals(this.UF, other.UF)) {
-            return false;
-        }
+      //  if (!Objects.equals(this.UF, other.UF)) {
+            //return false;
+        //}
         return true;
     }
 }

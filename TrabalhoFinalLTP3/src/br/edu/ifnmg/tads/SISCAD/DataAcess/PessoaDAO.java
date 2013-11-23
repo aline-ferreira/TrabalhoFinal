@@ -4,7 +4,10 @@
  */
 package br.edu.ifnmg.tads.SISCAD.DataAcess;
 
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Email;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Endereco;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Pessoa;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Telefone;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,7 +48,7 @@ public class PessoaDAO extends Dao {
                     obj.setCodigo(resultado.getInt("idPessoa"));
                 }
 
-                /*              // Salva o email
+                 // Salva o email
                  for (Email e : obj.getEmails()) {
                  SalvarEmail(obj, e);
                  }
@@ -56,7 +59,7 @@ public class PessoaDAO extends Dao {
                  // Salva o Telefone 
                  for (Telefone e : obj.getTelefones()) {
                  SalvarTelefone(obj, e);
-                 }*/
+                 }
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -144,7 +147,7 @@ public class PessoaDAO extends Dao {
      public boolean Remover(Pessoa obj) {
         if (obj.getCodigo() >= 0) {
             try {
-                PreparedStatement sql = getConexao().prepareStatement("delete from pessoa where codPessoa=?");
+                PreparedStatement sql = getConexao().prepareStatement("delete from pessoa where idPessoa=?");
                 sql.setInt(1, obj.getCodigo());
                 //sql.setDate(2, new java.sql.Date( obj.getDataNascimento().getTime() ));
                 sql.executeUpdate();
@@ -157,7 +160,96 @@ public class PessoaDAO extends Dao {
         }
         return true;
     }
+     
+        private void SalvarEmail(Pessoa pessoa, Email obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into emails(idPessoa,email) values(?,?)");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setString(2, obj.getEmail());
+                sql.executeUpdate();
+
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        } else {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("update emails set idPessoa = ?, email = ? where idEmail= ?");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setString(2, obj.getEmail());
+                sql.setInt(3, obj.getCodigo());
+                sql.executeQuery();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+    }
+        
+     private void SalvarEndereco(Pessoa pessoa, Endereco obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into enderecos(idPessoa,numero,"
+                                                                     + "rua,bairro,cidade,cep) values(?,?,?,?,?,?)");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getNumero());
+                sql.setString(3, obj.getRua());
+                sql.setString(4, obj.getBairro());
+                sql.setString(5, obj.getCidade());
+                sql.setString(6, obj.getCep());
+                sql.executeUpdate();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        } else {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("update enderecos set idPessoa=?,"+"numero=?, "
+                                                                     + "rua=?, bairro=?,cidade=?, cep=? where idEndereco = ?");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getNumero());
+                sql.setString(3, obj.getRua());
+                sql.setString(4, obj.getBairro());
+                sql.setString(5, obj.getCidade());
+                sql.setString(6, obj.getCep());
+                
+                sql.setInt(6, obj.getCodigo());
+                sql.executeQuery();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+     }
+        
+      private void SalvarTelefone(Pessoa pessoa, Telefone obj) {
+        if (obj.getCodigo() == 0) {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("insert into telefones(idPessoa,dd,telefone) values(?,?,?)");
+                sql.setInt(1, pessoa.getCodigo());
+                 sql.setInt(2, obj.getDd());
+                sql.setInt(3, obj.getTelefone());
+                sql.executeUpdate();
+
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        } else {
+            try {
+                PreparedStatement sql = getConexao().prepareStatement("update telefones set idPessoa = ?,dd=?, telefone = ? where idTelefone=?");
+                sql.setInt(1, pessoa.getCodigo());
+                sql.setInt(2, obj.getDd());
+                sql.setInt(3, obj.getTelefone());
+                sql.setInt(4, obj.getCodigo());
+                sql.executeQuery();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+    }
+    
+    
+    }    
+     
+     
     
     
 
-}
+
