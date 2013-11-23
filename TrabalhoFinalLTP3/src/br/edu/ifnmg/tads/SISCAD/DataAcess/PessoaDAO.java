@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -245,8 +247,109 @@ public class PessoaDAO extends Dao {
         }
     }
     
+        public void AbrirTelefones(Pessoa pessoa) {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from telefones where idPessoa=?");
+            sql.setInt(1, pessoa.getCodigo());
+
+            ResultSet resultado = sql.executeQuery();
+
+            while (resultado.next()) {
+                pessoa.addTelefone(AbreTelefone(resultado));
+                
+
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    private Telefone AbreTelefone(ResultSet resultado) {
+        Telefone tel = new Telefone();
+        try {
+            tel.setCodigo(resultado.getInt("codTelefone"));
+            tel.setDd(resultado.getByte("DD"));
+            tel.setTelefone(resultado.getInt("telefone"));
+            return tel;
+        } catch (Exception ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+     public void AbrirEnderecos(Pessoa pessoa) {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from enderecos where idPessoa=?");
+            sql.setInt(1, pessoa.getCodigo());
+
+            ResultSet resultado = sql.executeQuery();
+
+            while (resultado.next()) {
+               pessoa.addEndereco(AbreEndereco(resultado));
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+
+        }
+    }
     
-    }    
+    
+    private Endereco AbreEndereco(ResultSet resultado) {
+        Endereco end = new Endereco();
+        try {
+            end.setCodigo(resultado.getInt("idEndereco"));
+            end.setCep(resultado.getString("cep"));
+            end.setCidade(resultado.getString("cidade"));
+            end.setBairro(resultado.getString("bairro"));
+            end.setRua(resultado.getString("rua"));
+            end.setNumero(resultado.getInt("numero"));
+            
+           
+            
+            
+           // end.setUf(resultado.getString("uf"));
+          //  end.setPais(resultado.getString("pais"));
+
+            return end;
+        } catch (Exception ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+     private Email AbreEmail(ResultSet resultado) {
+        Email email = new Email();
+        try {
+            email.setCodigo(resultado.getInt("idEmail"));
+            email.setEmail(resultado.getString("Email"));
+        } catch (Exception ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return email;
+
+    }
+
+    
+    public void AbrirEmails(Pessoa pessoa) {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from emails where idpessoa=?");
+            sql.setInt(1, pessoa.getCodigo());
+
+            ResultSet resultado = sql.executeQuery();
+
+            while (resultado.next()) {
+                pessoa.addEmail(AbreEmail(resultado));
+
+            }
+        } catch (Exception ex) {
+        }
+    }
+
+
+
+    
+      }//fim    
      
      
     
