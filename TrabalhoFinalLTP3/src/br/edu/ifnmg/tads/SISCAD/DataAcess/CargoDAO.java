@@ -10,6 +10,8 @@ import br.edu.ifnmg.tads.SISCAD.DomainModel.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -56,8 +58,6 @@ public class CargoDAO extends Dao {
             }
         }
     }
-        
-         
 
     public Cargo Abrir(int id) {
         try {
@@ -67,12 +67,12 @@ public class CargoDAO extends Dao {
             ResultSet resultado = sql.executeQuery();
 
             if (resultado.next()) {
-               Cargo obj = new Cargo();
+                Cargo obj = new Cargo();
 
                 obj.setCodigo(resultado.getInt("IdCargo"));
                 obj.setNome(resultado.getString("Nome"));
-                obj.setNome(resultado.getString("Funacao"));
-                
+                obj.setFuncao(resultado.getString("Funcao"));
+
                 return obj;
             } else {
                 return null;
@@ -83,6 +83,28 @@ public class CargoDAO extends Dao {
         }
     }
 
+    public List<Cargo> ListarTodos() {
+        try {
+            PreparedStatement sql = getConexao().prepareStatement("select * from Cargo");
+
+            ResultSet resultado = sql.executeQuery();
+
+            List<Cargo> lista = new ArrayList<Cargo>();
+
+            while (resultado.next()) {
+               Cargo obj = new Cargo();
+
+                obj.setCodigo(resultado.getInt("IdCargo"));
+                obj.setNome(resultado.getString("Nome"));
+                obj.setFuncao(resultado.getString("Funcao"));
+                lista.add(obj);
+            }
+
+            return lista;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
 }
-
-
