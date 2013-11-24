@@ -6,9 +6,13 @@
 
 package trabalhofinalltp3;
 
+import br.edu.ifnmg.tads.SISCAD.DataAcess.CargoDAO;
+import br.edu.ifnmg.tads.SISCAD.DataAcess.FuncionarioDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Cargo;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Email;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Endereco;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Pessoa;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Telefone;
 import java.util.Date;
@@ -29,8 +33,17 @@ public class TrabalhoFinalLTP3 {
         Email email= new Email();
         Endereco endereco= new Endereco();
         PessoaDAO dao= new PessoaDAO();
+        Funcionario func= new Funcionario();
+        FuncionarioDAO dao2=new FuncionarioDAO();
+        CargoDAO dao3= new CargoDAO();
         
-        pessoa.setNome("Aline");
+        Cargo cargo = new Cargo();
+        
+         cargo.setNome("porteiro");
+        cargo.setFuncao("atendimento ao publico");
+        dao3.Salvar(cargo);
+        
+        pessoa.setNome("Amanda");
         pessoa.setRg("12345");
         pessoa.setCpf("999.999.999-00");
         pessoa.setSexo("F");
@@ -49,8 +62,14 @@ public class TrabalhoFinalLTP3 {
         pessoa.addEmail(email);
         pessoa.addEndereco(endereco);
         pessoa.addTelefone(tel);
-        
         dao.Salvar(pessoa);
+          
+        func.setPessoa(pessoa);
+        func.setCargo(cargo);
+        
+        
+      
+        dao2.Salvar(func);
         
     }
     

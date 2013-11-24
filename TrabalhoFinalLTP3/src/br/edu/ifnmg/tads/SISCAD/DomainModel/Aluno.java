@@ -17,6 +17,7 @@ public class Aluno {
 
     private int codigo;
     private Date dataIngresso;
+    private int ativo;
     private List<Avaliacao> avaliacoes;
     private List<TesteCarga> testesCarga;
     private Pessoa responsavel;

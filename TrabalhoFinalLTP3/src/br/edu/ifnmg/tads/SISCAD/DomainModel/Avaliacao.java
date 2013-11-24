@@ -17,12 +17,12 @@ public class Avaliacao {
     
     private int codigo;
     private Date data;
-    private String observação;
+    private String observacao;
     private Medidas medidas;
     private AtestadoMedico atestado;
-    private Date validade;
+    private Date vencimento;
     private Funcionario funcionario;//codFuncionario
-
+    private Aluno aluno;
     public Avaliacao() {
     }
     
@@ -44,12 +44,12 @@ public class Avaliacao {
         this.data = data;
     }
 
-    public String getObservação() {
-        return observação;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObservação(String observação) {
-        this.observação = observação;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Medidas getMedidas() {
@@ -68,14 +68,15 @@ public class Avaliacao {
         this.atestado = atestado;
     }
 
-    public Date getValidade() {
-        return validade;
+    public Date getVencimento() {
+        return vencimento;
     }
 
-    public void setValidade(Date validade) {
-        this.validade = validade;
+    public void setVencimento(Date vencimento) {
+        this.vencimento = vencimento;
     }
 
+  
     public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -84,15 +85,23 @@ public class Avaliacao {
         this.funcionario = funcionario;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + this.codigo;
         hash = 53 * hash + Objects.hashCode(this.data);
-        hash = 53 * hash + Objects.hashCode(this.observação);
+        hash = 53 * hash + Objects.hashCode(this.observacao);
         hash = 53 * hash + Objects.hashCode(this.medidas);
         hash = 53 * hash + Objects.hashCode(this.atestado);
-        hash = 53 * hash + Objects.hashCode(this.validade);
+        hash = 53 * hash + Objects.hashCode(this.vencimento);
         hash = 53 * hash + Objects.hashCode(this.funcionario);
         return hash;
     }
@@ -112,7 +121,7 @@ public class Avaliacao {
         if (!Objects.equals(this.data, other.data)) {
             return false;
         }
-        if (!Objects.equals(this.observação, other.observação)) {
+        if (!Objects.equals(this.observacao, other.observacao)) {
             return false;
         }
         if (!Objects.equals(this.medidas, other.medidas)) {
@@ -121,7 +130,7 @@ public class Avaliacao {
         if (!Objects.equals(this.atestado, other.atestado)) {
             return false;
         }
-        if (!Objects.equals(this.validade, other.validade)) {
+        if (!Objects.equals(this.vencimento, other.vencimento)) {
             return false;
         }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
