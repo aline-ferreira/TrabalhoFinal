@@ -8,11 +8,13 @@ package trabalhofinalltp3;
 
 import br.edu.ifnmg.tads.SISCAD.DataAcess.CargoDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.FuncionarioDAO;
+import br.edu.ifnmg.tads.SISCAD.DataAcess.GrupoMuscularDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Cargo;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Email;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Endereco;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.GrupoMuscular;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Pessoa;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Telefone;
 import java.util.Date;
@@ -28,7 +30,7 @@ public class TrabalhoFinalLTP3 {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        Pessoa pessoa =new Pessoa();
+       /* Pessoa pessoa =new Pessoa();
         Telefone tel=new Telefone();
         Email email= new Email();
         Endereco endereco= new Endereco();
@@ -39,11 +41,11 @@ public class TrabalhoFinalLTP3 {
         
         Cargo cargo = new Cargo();
         
-         cargo.setNome("porteiro");
+        cargo.setNome("porteiro");
         cargo.setFuncao("atendimento ao publico");
         dao3.Salvar(cargo);
-        
-        pessoa.setNome("Amanda");
+        cargo= dao3.Abrir(1);
+        pessoa.setNome("Maike");
         pessoa.setRg("12345");
         pessoa.setCpf("999.999.999-00");
         pessoa.setSexo("F");
@@ -66,10 +68,15 @@ public class TrabalhoFinalLTP3 {
           
         func.setPessoa(pessoa);
         func.setCargo(cargo);
+        func.setAtivo(1);
         
         
       
-        dao2.Salvar(func);
+        dao2.Salvar(func);*/
+        GrupoMuscular grupo= new GrupoMuscular();
+        GrupoMuscularDAO dao= new GrupoMuscularDAO();
+        grupo.setNome("peitoral");
+        dao.Salvar(grupo);
         
     }
     
