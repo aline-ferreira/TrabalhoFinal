@@ -29,4 +29,30 @@ public class Aluno {
         testesCarga = new ArrayList<TesteCarga>();
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Date getDataIngresso() {
+        return dataIngresso;
+    }
+
+    public void setDataIngresso(Date dataIngresso) {
+        this.dataIngresso = dataIngresso;
+    }
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+    
+    
+
 }

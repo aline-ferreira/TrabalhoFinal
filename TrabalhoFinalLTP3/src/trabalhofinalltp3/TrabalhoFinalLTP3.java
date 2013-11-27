@@ -6,10 +6,12 @@
 
 package trabalhofinalltp3;
 
+import br.edu.ifnmg.tads.SISCAD.DataAcess.AvaliacaoDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.CargoDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.FuncionarioDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.GrupoMuscularDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Cargo;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Email;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Endereco;
@@ -38,6 +40,9 @@ public class TrabalhoFinalLTP3 {
         FuncionarioDAO dao2=new FuncionarioDAO();
         CargoDAO dao3= new CargoDAO();
         PessoaDAO dao= new PessoaDAO();
+        Avaliacao ava= new Avaliacao();
+        AvaliacaoDAO dao4= new AvaliacaoDAO();
+        
         
         Cargo cargo = new Cargo();
         
@@ -65,16 +70,35 @@ public class TrabalhoFinalLTP3 {
         pessoa.addEmail(email);
         pessoa.addEndereco(endereco);
         pessoa.addTelefone(tel);
-      //  dao.Salvar(pessoa);
+        dao.Salvar(pessoa);
+        ava.setAltura(1);
+        ava.setBicepsDireito(2);
+        ava.setBicepsEsquerdo(2);
+       ava.setCintura(1);
+       ava.setCoxaDireita(1);
+       ava.setCoxaEsquerda(1);
+       ava.setGorduraAbdominal(2);
+       ava.setIMC(1);
+       ava.setPanturrilhaDireita(1);
+       ava.setPanturrilhaEsquerda(2);
+       ava.setPercentualGordura(3);
+       ava.setPeso(34);
+       ava.setPesoIdeal(8);
+       ava.setQuadril(2);
+       ava.setTorax(2);
+       ava.setVencimento(new Date());
+       ava.setData(new Date());
+       
+       dao4.Salvar(ava, pessoa);
           
-        func.setPessoa(pessoa);
+       /* func.setPessoa(pessoa);
         func.setCargo(cargo);
         func.setAtivo(1);
         
         
       
         dao2.Salvar(func);
-       /* GrupoMuscular grupo= new GrupoMuscular();
+        GrupoMuscular grupo= new GrupoMuscular();
         GrupoMuscularDAO dao= new GrupoMuscularDAO();
         grupo.setNome("peitoral");
         dao.Salvar(grupo);*/

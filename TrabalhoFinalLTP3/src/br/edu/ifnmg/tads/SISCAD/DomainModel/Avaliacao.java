@@ -17,16 +17,27 @@ public class Avaliacao {
     
     private int codigo;
     private Date data;
-    private String observacao;
-    private Medidas medidas;
     private AtestadoMedico atestado;
     private Date vencimento;
     private Funcionario funcionario;//codFuncionario
-    private Aluno aluno;
+    private double IMC;
+    private double pesoIdeal;
+    private double altura;
+    private double peso;
+    private double cintura;
+    private double quadril;
+    private double gorduraAbdominal;
+    private double bicepsDireito;
+    private double bicepsEsquerdo;
+    private double coxaDireita;
+    private double coxaEsquerda;
+    private double torax;
+    private double percentualGordura;
+    private double panturrilhaDireita;
+    private double panturrilhaEsquerda;
+
     public Avaliacao() {
     }
-    
-    
 
     public int getCodigo() {
         return codigo;
@@ -44,21 +55,7 @@ public class Avaliacao {
         this.data = data;
     }
 
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public Medidas getMedidas() {
-        return medidas;
-    }
-
-    public void setMedidas(Medidas medidas) {
-        this.medidas = medidas;
-    }
+   
 
     public AtestadoMedico getAtestado() {
         return atestado;
@@ -76,7 +73,6 @@ public class Avaliacao {
         this.vencimento = vencimento;
     }
 
-  
     public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -85,59 +81,133 @@ public class Avaliacao {
         this.funcionario = funcionario;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    
+    public double getIMC() {
+        return IMC;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setIMC(double IMC) {
+        this.IMC = IMC;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.codigo;
-        hash = 53 * hash + Objects.hashCode(this.data);
-        hash = 53 * hash + Objects.hashCode(this.observacao);
-        hash = 53 * hash + Objects.hashCode(this.medidas);
-        hash = 53 * hash + Objects.hashCode(this.atestado);
-        hash = 53 * hash + Objects.hashCode(this.vencimento);
-        hash = 53 * hash + Objects.hashCode(this.funcionario);
-        return hash;
+    public double getPesoIdeal() {
+        return pesoIdeal;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Avaliacao other = (Avaliacao) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.data, other.data)) {
-            return false;
-        }
-        if (!Objects.equals(this.observacao, other.observacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.medidas, other.medidas)) {
-            return false;
-        }
-        if (!Objects.equals(this.atestado, other.atestado)) {
-            return false;
-        }
-        if (!Objects.equals(this.vencimento, other.vencimento)) {
-            return false;
-        }
-        if (!Objects.equals(this.funcionario, other.funcionario)) {
-            return false;
-        }
-        return true;
+    public void setPesoIdeal(double pesoIdeal) {
+        this.pesoIdeal = pesoIdeal;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getCintura() {
+        return cintura;
+    }
+
+    public void setCintura(double cintura) {
+        this.cintura = cintura;
+    }
+
+    public double getQuadril() {
+        return quadril;
+    }
+
+    public void setQuadril(double quadril) {
+        this.quadril = quadril;
+    }
+
+    public double getGorduraAbdominal() {
+        return gorduraAbdominal;
+    }
+
+    public void setGorduraAbdominal(double gorduraAbdominal) {
+        this.gorduraAbdominal = gorduraAbdominal;
+    }
+
+    public double getBicepsDireito() {
+        return bicepsDireito;
+    }
+
+    public void setBicepsDireito(double bicepsDireito) {
+        this.bicepsDireito = bicepsDireito;
+    }
+
+    public double getBicepsEsquerdo() {
+        return bicepsEsquerdo;
+    }
+
+    public void setBicepsEsquerdo(double bicepsEsquerdo) {
+        this.bicepsEsquerdo = bicepsEsquerdo;
+    }
+
+    public double getCoxaDireita() {
+        return coxaDireita;
+    }
+
+    public void setCoxaDireita(double coxaDireita) {
+        this.coxaDireita = coxaDireita;
+    }
+
+    public double getCoxaEsquerda() {
+        return coxaEsquerda;
+    }
+
+    public void setCoxaEsquerda(double coxaEsquerda) {
+        this.coxaEsquerda = coxaEsquerda;
+    }
+
+    public double getTorax() {
+        return torax;
+    }
+
+    public void setTorax(double torax) {
+        this.torax = torax;
+    }
+
+    public double getPercentualGordura() {
+        return percentualGordura;
+    }
+
+    public void setPercentualGordura(double percentualGordura) {
+        this.percentualGordura = percentualGordura;
+    }
+
+    public double getPanturrilhaDireita() {
+        return panturrilhaDireita;
+    }
+
+    public void setPanturrilhaDireita(double panturrilhaDireita) {
+        this.panturrilhaDireita = panturrilhaDireita;
+    }
+
+    public double getPanturrilhaEsquerda() {
+        return panturrilhaEsquerda;
+    }
+
+    public void setPanturrilhaEsquerda(double panturrilhaEsquerda) {
+        this.panturrilhaEsquerda = panturrilhaEsquerda;
+    }
+
+    public Object getCargo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+
+   
        
 }
