@@ -30,22 +30,23 @@ public class TrabalhoFinalLTP3 {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-       /* Pessoa pessoa =new Pessoa();
+        Pessoa pessoa =new Pessoa();
         Telefone tel=new Telefone();
         Email email= new Email();
         Endereco endereco= new Endereco();
-        PessoaDAO dao= new PessoaDAO();
         Funcionario func= new Funcionario();
         FuncionarioDAO dao2=new FuncionarioDAO();
         CargoDAO dao3= new CargoDAO();
+        PessoaDAO dao= new PessoaDAO();
         
         Cargo cargo = new Cargo();
         
-        cargo.setNome("porteiro");
+        cargo.setNome("atendente");
         cargo.setFuncao("atendimento ao publico");
         dao3.Salvar(cargo);
-        cargo= dao3.Abrir(1);
-        pessoa.setNome("Maike");
+       
+        
+        pessoa.setNome("Alex");
         pessoa.setRg("12345");
         pessoa.setCpf("999.999.999-00");
         pessoa.setSexo("F");
@@ -64,7 +65,7 @@ public class TrabalhoFinalLTP3 {
         pessoa.addEmail(email);
         pessoa.addEndereco(endereco);
         pessoa.addTelefone(tel);
-        dao.Salvar(pessoa);
+      //  dao.Salvar(pessoa);
           
         func.setPessoa(pessoa);
         func.setCargo(cargo);
@@ -72,11 +73,11 @@ public class TrabalhoFinalLTP3 {
         
         
       
-        dao2.Salvar(func);*/
-        GrupoMuscular grupo= new GrupoMuscular();
+        dao2.Salvar(func);
+       /* GrupoMuscular grupo= new GrupoMuscular();
         GrupoMuscularDAO dao= new GrupoMuscularDAO();
         grupo.setNome("peitoral");
-        dao.Salvar(grupo);
+        dao.Salvar(grupo);*/
         
     }
     

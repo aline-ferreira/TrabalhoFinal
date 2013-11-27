@@ -21,56 +21,63 @@ import java.util.logging.Logger;
  *
  * @author Aline
  */
-public class FuncionarioDAO extends Dao {
+public class FuncionarioDAO extends PessoaDAO<Funcionario> {
 
     public FuncionarioDAO() {
         super();
     }
 
     public boolean Salvar(Funcionario obj) {
+
         if (obj.getCodigo() == 0) {
             try {
-                PreparedStatement sql = getConexao().prepareStatement("insert into Funcionario(idFuncionario,idCargo, ativo) values(?,?,?)");
-                sql.setInt(1, obj.getPessoa().getCodigo());
-                sql.setInt(2, obj.getCargo().getCodigo());
+                super.Salvar(obj.getPessoa());
+                PreparedStatement sql = getConexao().prepareStatement("insert into Funcionario(idCargo,idFuncionario, ativo) values(?,?,?)");
+                sql.setInt(1, obj.getCargo().getCodigo());
+                sql.setInt(2, obj.getPessoa().getCodigo());
                 sql.setInt(3, obj.getAtivo());
                 sql.executeUpdate();
 
-                PreparedStatement sql2 = getConexao().prepareStatement("select idFuncionario from funcionario where idCargo=? ativo= ? ");
-                sql2.setInt(1, obj.getCargo().getCodigo());
-                sql2.setInt(2, obj.getAtivo());
-                ResultSet resultado = sql2.executeQuery();
-                if (resultado.next()) {
-                    obj.setCodigo(resultado.getInt("idFuncionario"));
-                }
-
-               return true;
+                return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
                 return false;
             }
-        } 
-        return false;
-        
-            
+        } else {
+            try {
+                super.Salvar(obj);
+                Connection con = getConexao();
+                PreparedStatement sqlUpdate = con.prepareStatement("update Funcionario set idCargo=?, ativo= ? where idFuncionario=?");
+                sqlUpdate.setInt(1, obj.getCargo().getCodigo());
+                sqlUpdate.setInt(2, 1);
+                sqlUpdate.setInt(3, obj.getCodigo());
+                sqlUpdate.executeUpdate();
+
+                return true;
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                return false;
+            }
+        }
+
     }
-    
-  public boolean Apagar(int cod){
+
+    public boolean Apagar(int cod) {
         try {
             PreparedStatement sql = getConexao().
                     prepareStatement("update cliente set ativo = 0 where IdCliente = ?");
-           sql.setInt(1, cod);
-          sql.executeUpdate();
+            sql.setInt(1, cod);
+            sql.executeUpdate();
             return true;
         } catch (SQLException ex) {
-           Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-  
-    public List<Funcionario> ListarTodos() {
+
+ public List<Funcionario> ListarFuncionarios(){
         try {
-            PreparedStatement sql = getConexao().prepareStatement("select * from Funcionario where ativo = 1");
+            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Funcionario F on P.IdPessoa = F.IdFuncionario where F.ativo = 1");
 
             ResultSet resultado = sql.executeQuery();
 
@@ -79,8 +86,10 @@ public class FuncionarioDAO extends Dao {
             while (resultado.next()) {
                 Funcionario obj = new Funcionario();
 
-                obj.setCodigo(resultado.getInt("idFuncionario"));
-                obj.setNome(resultado.getString("idCargo"));
+                super.CarregaObjetoPessoa(obj, resultado);
+
+                obj.setCodigo(resultado.getInt("IdPessoa"));
+                obj.setAtivo(resultado.getInt("ativo"));
                 
                 lista.add(obj);
             }
@@ -91,8 +100,8 @@ public class FuncionarioDAO extends Dao {
             return null;
         }
     }
-    
-     public List<Funcionario> buscar(Funcionario filtro) {
+
+    public List<Funcionario> buscar(Funcionario filtro) {
         try {
 
             String sql = "select * from pessoa p join Funcionario f on p.IdPessoa = f.IdFuncionario where ativo = 1 ";
@@ -124,7 +133,7 @@ public class FuncionarioDAO extends Dao {
             List<Funcionario> clientes = new LinkedList<>();
             while (resultado.next()) {
                 // Inicializa um objeto de produto vazio
-              Funcionario tmp = new Funcionario();
+                Funcionario tmp = new Funcionario();
                 // Pega os valores do retorno da consulta e coloca no objeto
 
                 try {
@@ -144,4 +153,29 @@ public class FuncionarioDAO extends Dao {
             return null;
         }
     }
+
+    public Funcionario AbrirFuncionario(int id) {
+        try {
+            Funcionario funcionario = new Funcionario();
+
+            super.AbrirPessoa(funcionario, id);
+
+            CargoDAO cargoDAO = new CargoDAO();
+
+            PreparedStatement sql = getConexao().prepareStatement("select * from Funcionario where idFuncionario=?");
+            sql.setInt(1, id);
+            ResultSet resultado = sql.executeQuery();
+
+            if (resultado.next()) {
+                funcionario.setCargo(cargoDAO.Abrir(resultado.getInt("idCargo")));
+                return funcionario;
+            } else {
+                return null;
+            }
+
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
     }
+}

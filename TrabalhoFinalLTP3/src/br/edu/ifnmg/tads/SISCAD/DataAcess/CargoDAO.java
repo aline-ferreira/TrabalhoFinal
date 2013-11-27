@@ -28,12 +28,12 @@ public class CargoDAO extends Dao {
 
                 sql.executeUpdate();
 
-                PreparedStatement sql2 = getConexao().prepareStatement("select idCargo from pessoa where nome = ? and funcao= ? ");
+                PreparedStatement sql2 = getConexao().prepareStatement("select idCargo from Cargo where nome = ? and funcao= ? ");
                 sql2.setString(1, obj.getNome());
                 sql2.setString(2, obj.getFuncao());
                 ResultSet resultado = sql2.executeQuery();
                 if (resultado.next()) {
-                    obj.setCodigo(resultado.getInt("idPessoa"));
+                    obj.setCodigo(resultado.getInt("idCargo"));
                 }
 
                 return true;
