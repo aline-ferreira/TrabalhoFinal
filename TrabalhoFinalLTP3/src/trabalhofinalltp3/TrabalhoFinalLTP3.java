@@ -8,15 +8,15 @@ package trabalhofinalltp3;
 
 import br.edu.ifnmg.tads.SISCAD.DataAcess.AvaliacaoDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.CargoDAO;
+import br.edu.ifnmg.tads.SISCAD.DataAcess.ClienteDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.FuncionarioDAO;
-import br.edu.ifnmg.tads.SISCAD.DataAcess.GrupoMuscularDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Cargo;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Cliente;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Email;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Endereco;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
-import br.edu.ifnmg.tads.SISCAD.DomainModel.GrupoMuscular;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Pessoa;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Telefone;
 import java.util.Date;
@@ -42,20 +42,20 @@ public class TrabalhoFinalLTP3 {
         PessoaDAO dao= new PessoaDAO();
         Avaliacao ava= new Avaliacao();
         AvaliacaoDAO dao4= new AvaliacaoDAO();
+        Cliente cli = new Cliente();
+        ClienteDAO dao5 = new ClienteDAO();
         
         
         Cargo cargo = new Cargo();
         
-        cargo.setNome("atendente");
-        cargo.setFuncao("atendimento ao publico");
-        dao3.Salvar(cargo);
+        
        
         
-        pessoa.setNome("Alex");
-        pessoa.setRg("12345");
-        pessoa.setCpf("999.999.999-00");
-        pessoa.setSexo("F");
-        pessoa.setDataNascimento(new Date());
+        cli.setNome("Maria");
+        cli.setRg("12345");
+        cli.setCpf("999.999.999-00");
+        cli.setSexo("F");
+        cli.setDataNascimento(new Date());
   
         tel.setDd(12);
         tel.setTelefone(123456);
@@ -67,13 +67,16 @@ public class TrabalhoFinalLTP3 {
         endereco.setNumero(375);
         endereco.setRua("d");
         
-        pessoa.addEmail(email);
-        pessoa.addEndereco(endereco);
-        pessoa.addTelefone(tel);
-        dao.Salvar(pessoa);
-        ava.setAltura(1);
-        ava.setBicepsDireito(2);
-        ava.setBicepsEsquerdo(2);
+        cli.addEmail(email);
+        cli.addEndereco(endereco);
+        cli.addTelefone(tel);
+       
+        
+        
+        //dao.Salvar(pessoa);
+       ava.setAltura(1);
+       ava.setBicepsDireito(2);
+       ava.setBicepsEsquerdo(2);
        ava.setCintura(1);
        ava.setCoxaDireita(1);
        ava.setCoxaEsquerda(1);
@@ -88,8 +91,9 @@ public class TrabalhoFinalLTP3 {
        ava.setTorax(2);
        ava.setVencimento(new Date());
        ava.setData(new Date());
-       
-       dao4.Salvar(ava, pessoa);
+       cli.setAtivo(1);
+       dao5.Salvar(cli);
+       //dao4.Salvar(ava, pessoa);
           
        /* func.setPessoa(pessoa);
         func.setCargo(cargo);
