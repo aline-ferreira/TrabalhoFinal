@@ -43,8 +43,12 @@ public class Avaliacao {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+      public void setCodigo(int codigo) throws Exception {
+        if (codigo > 0) {
+            this.codigo = codigo;
+        } else {
+            throw new Exception("Codigo Inválido!");
+        }
     }
 
     public Date getData() {
