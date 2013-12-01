@@ -41,6 +41,22 @@ public class Cliente extends Pessoa{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+    
+      public void addTesteCarga(TesteCarga teste) {
+        if (!testesCarga.contains(teste)) {
+            testesCarga.add(teste);
+        }
+    }
+
+    public void removeTesteCarga(TesteCarga teste) {
+        if (testesCarga.contains(teste)) {
+            testesCarga.remove(teste);
+        }
+    }
+
+    public List<TesteCarga> getTesteCarga() {
+        return testesCarga;
+    }
 
     public Date getDataIngresso() {
         return dataIngresso;

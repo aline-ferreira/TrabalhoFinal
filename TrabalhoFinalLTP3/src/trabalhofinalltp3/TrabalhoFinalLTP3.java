@@ -42,6 +42,7 @@ public class TrabalhoFinalLTP3 {
         CargoDAO dao3= new CargoDAO();
         PessoaDAO dao= new PessoaDAO();
         Avaliacao ava= new Avaliacao();
+        
         AvaliacaoDAO dao4= new AvaliacaoDAO();
         Cliente cli = new Cliente();
         ClienteDAO dao5 = new ClienteDAO();
@@ -53,7 +54,7 @@ public class TrabalhoFinalLTP3 {
         
        
         
-        cli.setNome("pedroo");
+        cli.setNome("joao");
         cli.setRg("12345");
         cli.setCpf("999.999.999-00");
         cli.setSexo("M");
@@ -101,6 +102,7 @@ public class TrabalhoFinalLTP3 {
        at.setObservacao("abcdefghijklmnop");
        dao4.Salvar(ava, cli);
        dao4.SalvarAtestadoMedico(at, ava);
+       dao4.AbrirAtestado(ava);
           
        /* func.setPessoa(pessoa);
         func.setCargo(cargo);

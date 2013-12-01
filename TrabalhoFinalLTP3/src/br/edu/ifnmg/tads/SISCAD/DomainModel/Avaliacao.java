@@ -35,6 +35,7 @@ public class Avaliacao {
     private double percentualGordura;
     private double panturrilhaDireita;
     private double panturrilhaEsquerda;
+    private Anamnese anamnese;
 
     public Avaliacao() {
     }
@@ -57,6 +58,14 @@ public class Avaliacao {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Anamnese getAnamnese() {
+        return anamnese;
+    }
+
+    public void setAnamnese(Anamnese anamnese) {
+        this.anamnese = anamnese;
     }
 
    

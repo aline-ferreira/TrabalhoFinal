@@ -50,7 +50,6 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
                 if (resultado.next()) {
                     obj.setCodigo(resultado.getInt("idPessoa"));
                 }
-
                 // Salva o email
                 for (Email e : obj.getEmails()) {
                     SalvarEmail(obj, e);
@@ -81,7 +80,6 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
                 sql.setInt(6, obj.getCodigo());
                 sql.executeUpdate();
                 return true;
-
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
                 return false;

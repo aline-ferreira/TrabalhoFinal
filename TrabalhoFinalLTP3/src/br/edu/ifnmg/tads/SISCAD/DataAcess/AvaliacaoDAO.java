@@ -17,7 +17,7 @@ import java.sql.ResultSet;
  *
  * @author Aline
  */
-public class AvaliacaoDAO extends Dao {
+public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
 
     
     //Salvar avaliacao
@@ -51,6 +51,7 @@ public class AvaliacaoDAO extends Dao {
                 sql.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
                 sql.executeUpdate();
                 
+                //Pega o ID do objeto
                 PreparedStatement sql2 = getConexao().prepareStatement("select idAvaliacao from Avaliacao where IMC=? and pesoIdeal=? and "
                                                                       + "altura=? and peso=? and cintura=? and quadril=? and gorduraAbdominal=?and "
                                                                       + "bicepsDireito=? and bicepsEsquerdo=? and torax=? and coxaDireita=? and "
@@ -76,14 +77,9 @@ public class AvaliacaoDAO extends Dao {
                 ResultSet resultado = sql2.executeQuery();
                 if (resultado.next()) {
                     obj.setCodigo(resultado.getInt("idAvaliacao"));
-                }
-                
-                
-                
-                
+                }          
                 sql.executeUpdate();
-                
-                       
+             
                return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -207,10 +203,65 @@ public class AvaliacaoDAO extends Dao {
                 return false;
             }
         }
+    }
+        
+  public void AbrirAtestado(Avaliacao avaliacao){
+          try{
+            PreparedStatement sql = getConexao().prepareStatement("select * from AtestadoMedico where idAvaliacao=?");
+            sql.setInt(1, avaliacao.getCodigo());
+
+            ResultSet resultado = sql.executeQuery();
+              if (resultado.next()) {
+               AtestadoMedico obj = new AtestadoMedico ();
+               obj.setCodigo(resultado.getInt("idAtestadoMedico"));
+               obj.setDataEmissao(resultado.getDate("DataEmissao"));
+               obj.setMedico(resultado.getString("Medico"));
+               obj.setObservacao(resultado.getString("observacao"));
+              
+               avaliacao.setAtestado(obj);
+               
+                
+            }
+
+        }catch( Exception ex){
+           System.err.println(ex.getMessage()); 
+             
+          }            
+    }
+  
+  public void AbrirAnamnese(Avaliacao avaliacao){
+          try{
+            PreparedStatement sql = getConexao().prepareStatement("select * from Anamnese where idAvaliacao=?");
+            sql.setInt(1, avaliacao.getCodigo());
+
+            ResultSet resultado = sql.executeQuery();
+              if (resultado.next()) {
+               Anamnese obj = new Anamnese ();
+               obj.setCodigo(resultado.getInt("idAnamnese"));
+               obj.setAlergia(resultado.getString("Alergia"));
+               obj.setDoenca(resultado.getString("Doenca"));
+               obj.setRemedio(resultado.getString("remedio"));
+             
+               
+              
+               avaliacao.setAnamnese(obj);
+               
+                
+            }
+
+        }catch( Exception ex){
+           System.err.println(ex.getMessage()); 
+             
+          }            
+    }
+  
+   public void  AbrirAvaliacao(){
+       
+   }
  
-  }
+  }//fim
     
     
     
 
-}
+

@@ -12,8 +12,13 @@ import br.edu.ifnmg.tads.SISCAD.DataAcess.AvaliacaoDAO;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ALUNO
@@ -47,7 +52,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sqlUpdate.setInt(1, obj.getAtivo());
                 sqlUpdate.setInt(2, obj.getCodigo());
                 sqlUpdate.executeUpdate();
-                
+              
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -81,7 +86,55 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
             return null;
         }
     }
+ public List<Cliente> buscar(Cliente filtro) {
+        try {
 
+            String sql = "select * from pessoa p join cliente c on p.IdPessoa = c.IdPessoa where ativo = 1 ";
+            String where = "";
+
+            if (filtro.getNome().length() > 0) {
+                if (where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = "nome like '%" + filtro.getNome() + "%'";
+            }
+
+            if (filtro.getCodigo() > 0) {
+                if (where.length() > 0) {
+                    where = where + " and ";
+                }
+                where = where + " Idpessoa = " + filtro.getCodigo();
+            }
+
+            if (where.length() > 0) {
+                sql = sql + where;
+            }
+
+            Statement comando = getConexao().createStatement();
+
+            ResultSet resultado = comando.executeQuery(sql);
+
+            List<Cliente> clientes = new LinkedList<>();
+            while (resultado.next()) {
+               
+                Cliente tmp = new Cliente();
+               
+
+                try {
+                    tmp.setCodigo(resultado.getInt("IdPessoa"));
+                    tmp.setAtivo(resultado.getInt("Ativo"));
+                   
+                } catch (Exception ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                clientes.add(tmp);
+            }
+            return clientes;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
     
 }

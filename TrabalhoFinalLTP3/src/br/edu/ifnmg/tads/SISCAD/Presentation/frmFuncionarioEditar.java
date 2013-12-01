@@ -60,8 +60,8 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         setClosable(true);
         setForeground(java.awt.Color.white);
         setMaximizable(true);
-        setResizable(true);
-        setTitle("Funcionario");
+        setTitle("Cadastro Funcionario");
+        setVisible(true);
 
         label1.setText("Nome: ");
 

@@ -18,7 +18,8 @@ public class TesteCarga {
     private int repeticoesMaximas;
     private Date data;
     private Funcionario funcionario;
-
+    private Aparelho aparelho;
+    
     public TesteCarga() {
     }
 
@@ -30,6 +31,15 @@ public class TesteCarga {
         this.codigo = codigo;
     }
 
+    public Aparelho getAparelho() {
+        return aparelho;
+    }
+
+    public void setAparelho(Aparelho aparelho) {
+        this.aparelho = aparelho;
+    }
+
+    
     public double getCargaSupramaxima() {
         return cargaSupramaxima;
     }
