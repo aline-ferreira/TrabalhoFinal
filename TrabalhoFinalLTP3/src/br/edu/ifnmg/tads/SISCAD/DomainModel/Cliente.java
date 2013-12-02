@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author Aline
  */
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
     private int codigo;
     private Date dataIngresso;
@@ -31,7 +31,7 @@ public class Cliente extends Pessoa{
     }
 
     public Cliente() {
-      
+
     }
 
     public int getCodigo() {
@@ -41,8 +41,8 @@ public class Cliente extends Pessoa{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
-   public void addTesteCarga(TesteCarga teste) {
+
+    public void addTesteCarga(TesteCarga teste) {
         if (!testesCarga.contains(teste)) {
             testesCarga.add(teste);
         }
@@ -58,7 +58,7 @@ public class Cliente extends Pessoa{
         return testesCarga;
     }
 
-      public void addAvaliacao(Avaliacao avaliacao) {
+    public void addAvaliacao(Avaliacao avaliacao) {
         if (!avaliacoes.contains(avaliacao)) {
             avaliacoes.add(avaliacao);
         }
@@ -74,7 +74,6 @@ public class Cliente extends Pessoa{
         return avaliacoes;
     }
 
-    
     public Date getDataIngresso() {
         return dataIngresso;
     }
@@ -90,8 +89,6 @@ public class Cliente extends Pessoa{
     public void setAtivo(int ativo) {
         this.ativo = ativo;
     }
-
-    
 
     @Override
     public int hashCode() {
@@ -138,8 +135,5 @@ public class Cliente extends Pessoa{
         }
         return true;
     }
-
-    
-    
 
 }

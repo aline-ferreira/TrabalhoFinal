@@ -161,10 +161,38 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
         }
     }
  
- public Cliente Abrir(){
-       return null;
-     
- }
+
+    public Cliente AbrirCliente(int id) {
+        try {
+           Cliente cliente = new Cliente();
+
+            super.AbrirPessoa(cliente,id);
+
+            AvaliacaoDAO avaliacao= new AvaliacaoDAO();
+            TesteDeCargaDAO teste = new TesteDeCargaDAO();
+            
+
+            PreparedStatement sql = getConexao().prepareStatement("select * from Cliente where idCliente=?");
+            sql.setInt(1, id);
+            ResultSet resultado = sql.executeQuery();
+
+            if (resultado.next()) {
+                cliente.setCodigo(resultado.getInt("IdCliente"));
+                avaliacao.AbrirAvaliações(cliente);
+                teste.AbrirTestesCarga(cliente);
+                
+                return cliente;
+                
+            } else {
+                return null;
+            }
+
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+      
+    }
     
     
 }

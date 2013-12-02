@@ -14,6 +14,7 @@ import br.edu.ifnmg.tads.SISCAD.DomainModel.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,8 +34,8 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                         + "altura,peso,cintura,quadril,gorduraAbdominal,"
                         + "bicepsDireito,bicepsEsquerdo,torax,coxaDireita,"
                         + " coxaEsquerda,panturrilhaDireita,panturrilhaEsquerda,"
-                        + "idCliente,data,vencimento)"
-                        + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + "idCliente,data,vencimento,IdFuncionario)"
+                        + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 sql.setDouble(1, obj.getIMC());
                 sql.setDouble(2, obj.getPesoIdeal());
                 sql.setDouble(3, obj.getAltura());
@@ -52,6 +53,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 sql.setDouble(15, cliente.getCodigo());
                 sql.setDate(16, new java.sql.Date(obj.getData().getTime()));
                 sql.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
+                sql.setInt(18,obj.getFuncionario().getCodigo());
                 sql.executeUpdate();
 
                 //Pega o ID do objeto
@@ -59,7 +61,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                         + "altura=? and peso=? and cintura=? and quadril=? and gorduraAbdominal=?and "
                         + "bicepsDireito=? and bicepsEsquerdo=? and torax=? and coxaDireita=? and "
                         + " coxaEsquerda=? and panturrilhaDireita=? and panturrilhaEsquerda=? and "
-                        + "idCliente=? and data=? and vencimento=?");
+                        + "idCliente=? and data=? and vencimento=? and IdFuncionario" );
                 sql2.setDouble(1, obj.getIMC());
                 sql2.setDouble(2, obj.getPesoIdeal());
                 sql2.setDouble(3, obj.getAltura());
@@ -77,6 +79,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 sql2.setDouble(15, cliente.getCodigo());
                 sql2.setDate(16, new java.sql.Date(obj.getData().getTime()));
                 sql2.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
+                sql2.setInt(18,obj.getFuncionario().getCodigo());
                 ResultSet resultado = sql2.executeQuery();
                 if (resultado.next()) {
                     obj.setCodigo(resultado.getInt("idAvaliacao"));
@@ -92,11 +95,11 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
             try {
 
                 Connection con = getConexao();
-                PreparedStatement sqlUpdate = con.prepareStatement("update Avaliacao set IMC=?,pesoIdeal=?,"
+                PreparedStatement sqlUpdate = con.prepareStatement("update Avaliacao set  IMC=?,pesoIdeal=?,"
                         + "altura=?,peso=?,cintura=?,quadril=?,gorduraAbdominal=?,"
                         + "bicepsDireito=?,bicepsEsquerdo=?,torax=?,coxaDireita=?,"
                         + " coxaEsquerda=?,panturrilhaDireita=?,panturrilhaEsquerda=?,"
-                        + "idCliente=?,data=?,vencimento=? where idAvaliacao=?");
+                        + "idCliente=?,data=?,vencimento=?, IdFuncionario=? where idAvaliacao=?");
                 sqlUpdate.setDouble(1, obj.getIMC());
                 sqlUpdate.setDouble(2, obj.getPesoIdeal());
                 sqlUpdate.setDouble(3, obj.getAltura());
@@ -114,7 +117,8 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 sqlUpdate.setDouble(15, cliente.getCodigo());
                 sqlUpdate.setDate(16, new java.sql.Date(obj.getData().getTime()));
                 sqlUpdate.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
-                sqlUpdate.setInt(18, obj.getCodigo());
+                sqlUpdate.setInt(18,obj.getFuncionario().getCodigo());
+                sqlUpdate.setInt(19, obj.getCodigo());
 
                 sqlUpdate.executeUpdate();
 
@@ -258,6 +262,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
     }
  public Avaliacao AbreAvaliacao(ResultSet resultado) {
         Avaliacao avaliacao = new Avaliacao();
+        FuncionarioDAO  funcionario = new FuncionarioDAO();
         try {
             avaliacao.setCodigo(resultado.getInt("IdAvaliacao"));
             avaliacao.setAltura(resultado.getDouble("Altura"));
@@ -278,6 +283,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
             avaliacao.setVencimento(resultado.getDate("vencimento"));
             avaliacao.setAtestado(AbrirAtestado(resultado.getInt("IdAvaliacao")));
             avaliacao.setAnamnese(AbrirAnamnese(resultado.getInt("IdAvaliacao")));
+            avaliacao.setFuncionario(funcionario.AbrirFuncionario(resultado.getInt("IdFuncionario")));
             
             return avaliacao;
             
@@ -292,6 +298,7 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
             sql.setInt(1, cliente.getCodigo());
 
             ResultSet resultado = sql.executeQuery();
+            
 
             while (resultado.next()) {
                 cliente.addAvaliacao(AbreAvaliacao(resultado));
@@ -302,8 +309,9 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
         }
 
     }
-
-   
+ 
+ 
+ 
 
     
 }//fim
