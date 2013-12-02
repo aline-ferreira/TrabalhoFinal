@@ -35,7 +35,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuFuncionarios = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -52,8 +52,13 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Cadastros");
 
-        jMenuItem2.setText("Funcionarios");
-        jMenu5.add(jMenuItem2);
+        mnuFuncionarios.setText("Funcionarios");
+        mnuFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFuncionariosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mnuFuncionarios);
 
         jMenuBar1.add(jMenu5);
 
@@ -63,15 +68,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFuncionariosActionPerformed
+      frmFuncionarioListar janela = new frmFuncionarioListar();
+      add(janela);
+      janela.setVisible(true);
+    }//GEN-LAST:event_mnuFuncionariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,6 +127,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem mnuFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

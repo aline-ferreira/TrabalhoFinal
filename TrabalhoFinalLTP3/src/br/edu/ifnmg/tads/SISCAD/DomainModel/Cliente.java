@@ -42,7 +42,7 @@ public class Cliente extends Pessoa{
         this.codigo = codigo;
     }
     
-      public void addTesteCarga(TesteCarga teste) {
+   public void addTesteCarga(TesteCarga teste) {
         if (!testesCarga.contains(teste)) {
             testesCarga.add(teste);
         }
@@ -58,6 +58,23 @@ public class Cliente extends Pessoa{
         return testesCarga;
     }
 
+      public void addAvaliacao(Avaliacao avaliacao) {
+        if (!avaliacoes.contains(avaliacao)) {
+            avaliacoes.add(avaliacao);
+        }
+    }
+
+    public void removeTesteCarga(Avaliacao avaliacao) {
+        if (avaliacoes.contains(avaliacao)) {
+            avaliacoes.remove(avaliacao);
+        }
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    
     public Date getDataIngresso() {
         return dataIngresso;
     }

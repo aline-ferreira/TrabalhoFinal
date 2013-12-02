@@ -65,7 +65,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
     public boolean Apagar(int cod) {
         try {
             PreparedStatement sql = getConexao().
-                    prepareStatement("update cliente set ativo = 0 where IdCliente = ?");
+                    prepareStatement("update Funcionario set ativo = 0 where IdCliente = ?");
             sql.setInt(1, cod);
             sql.executeUpdate();
             return true;
@@ -158,7 +158,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
         try {
             Funcionario funcionario = new Funcionario();
 
-            super.AbrirPessoa(funcionario, id);
+            super.AbrirPessoa(funcionario,id);
 
             CargoDAO cargoDAO = new CargoDAO();
 
@@ -167,6 +167,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
             ResultSet resultado = sql.executeQuery();
 
             if (resultado.next()) {
+                
                 funcionario.setCargo(cargoDAO.Abrir(resultado.getInt("idCargo")));
                 return funcionario;
             } else {

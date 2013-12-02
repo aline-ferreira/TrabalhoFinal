@@ -334,11 +334,12 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
     }
 
     protected void CarregaObjetoPessoa(T obj, ResultSet resultado) throws Exception {
-        obj.setCodigo(resultado.getInt("codPessoa"));
+        obj.setCodigo(resultado.getInt("idPessoa"));
         obj.setNome(resultado.getString("Nome"));
         obj.setDataNascimento(resultado.getDate("DataNascimento"));
         obj.setCpf(resultado.getString("CPF"));
         obj.setRg(resultado.getString("RG"));
+        obj.setSexo(resultado.getString("sexo"));
 
 
     }

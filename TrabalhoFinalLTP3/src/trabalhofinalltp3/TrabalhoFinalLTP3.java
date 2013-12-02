@@ -101,8 +101,8 @@ public class TrabalhoFinalLTP3 {
        at.setMedico("joao");
        at.setObservacao("abcdefghijklmnop");
        dao4.Salvar(ava, cli);
-       dao4.SalvarAtestadoMedico(at, ava);
-       dao4.AbrirAtestado(ava);
+      // dao4.SalvarAtestadoMedico(at, ava);
+     //  dao4.AbrirAtestado(ava);
           
        /* func.setPessoa(pessoa);
         func.setCargo(cargo);

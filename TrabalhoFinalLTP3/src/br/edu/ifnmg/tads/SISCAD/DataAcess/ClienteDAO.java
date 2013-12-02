@@ -11,6 +11,7 @@ import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.AvaliacaoDAO;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.TesteCarga;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,8 @@ import java.util.logging.Logger;
  * @author ALUNO
  */
 public class ClienteDAO extends PessoaDAO<Cliente>{
+   private AvaliacaoDAO avaliacao;
+   private TesteDeCargaDAO testeCarga;
    public ClienteDAO() {
         super();
     }
@@ -38,7 +41,16 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sql.setInt(1, obj.getCodigo());
                 sql.setInt(2, obj.getAtivo());
                 sql.executeUpdate();
-
+                
+                  // Salva o email
+                for (Avaliacao a : obj.getAvaliacoes()) {
+                    avaliacao.Salvar(a, obj);
+                }
+                //Salva o Endereco 
+                for (TesteCarga t : obj.getTesteCarga()) {
+                    testeCarga.SalvarTesteDeCarga(t, obj);
+                }
+                
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -61,7 +73,20 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
         }
     }
     
-    public List<Cliente> ListarFuncionarios(){
+     public boolean Apagar(int cod) {
+        try {
+            PreparedStatement sql = getConexao().
+                    prepareStatement("update cliente set ativo = 0 where IdCliente = ?");
+            sql.setInt(1, cod);
+            sql.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+ public List<Cliente> Listar(){
         try {
             PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Cliente C on P.IdPessoa = C.IdCliente  where C.ativo = 1");
 
@@ -135,6 +160,11 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
             return null;
         }
     }
+ 
+ public Cliente Abrir(){
+       return null;
+     
+ }
     
     
 }
