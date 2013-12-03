@@ -57,6 +57,11 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
         });
 
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         tblListarFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,6 +74,11 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblListarFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListarFuncionariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblListarFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,6 +137,25 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
       
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+       //Passagem de parametros nulos  
+        Funcionario funcionario = new Funcionario();
+        FuncionarioDAO daoNulo= new FuncionarioDAO();
+        frmFuncionarioEditar janela = new frmFuncionarioEditar(funcionario, daoNulo);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void tblListarFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListarFuncionariosMouseClicked
+        Object valor = tblListarFuncionarios.getValueAt(tblListarFuncionarios.getSelectedRow(), 0);
+        Funcionario f = dao.AbrirFuncionario((int) valor);
+        frmFuncionarioEditar janela = new frmFuncionarioEditar(f, dao);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tblListarFuncionariosMouseClicked
   private void preencheTabela(List<Funcionario> lista) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("IdFuncionario");

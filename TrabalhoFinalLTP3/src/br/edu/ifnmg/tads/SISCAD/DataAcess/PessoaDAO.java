@@ -260,7 +260,7 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
     private Telefone AbreTelefone(ResultSet resultado) {
         Telefone tel = new Telefone();
         try {
-            tel.setCodigo(resultado.getInt("codTelefone"));
+            tel.setCodigo(resultado.getInt("idTelefone"));
             tel.setDd(resultado.getByte("DD"));
             tel.setTelefone(resultado.getInt("telefone"));
             return tel;

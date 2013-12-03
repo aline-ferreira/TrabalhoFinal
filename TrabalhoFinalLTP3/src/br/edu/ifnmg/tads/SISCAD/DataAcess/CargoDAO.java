@@ -83,7 +83,7 @@ public class CargoDAO extends Dao {
         }
     }
 
-    public List<Cargo> ListarTodos() {
+    public List<Cargo> ListarCargos() {
         try {
             PreparedStatement sql = getConexao().prepareStatement("select * from Cargo");
 

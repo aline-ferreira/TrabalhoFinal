@@ -223,7 +223,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
     public void AbrirHorarios(Funcionario funcionario){
         
         try{
-            PreparedStatement sql= getConexao().prepareStatement("select from Horarios where IdFuncionario=?");
+            PreparedStatement sql= getConexao().prepareStatement("select * from Horarios where IdFuncionario=?");
             sql.setInt(1, funcionario.getCodigo());
             
             ResultSet resultado= sql.executeQuery();

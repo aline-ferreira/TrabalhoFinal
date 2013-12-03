@@ -74,11 +74,10 @@ public class Cargo {
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Cargo{" + "codigo=" + codigo + ", nome=" + nome + ", funcao=" + funcao + '}';
+        return nome;
     }
-    
-    
     
 }
