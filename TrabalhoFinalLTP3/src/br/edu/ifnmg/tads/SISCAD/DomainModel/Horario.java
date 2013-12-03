@@ -15,8 +15,9 @@ import java.util.Objects;
 public class Horario {
     private int codigo;
     private String dia;
-    private double horaEntrada;
-    private double horaSaida;
+    private String horaEntrada;
+    private String horaSaida;
+    private Funcionario funcionario;
 
     public Horario() {
     }
@@ -29,6 +30,14 @@ public class Horario {
         this.codigo = codigo;
     }
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
     public String getDia() {
         return dia;
     }
@@ -37,19 +46,19 @@ public class Horario {
         this.dia = dia;
     }
 
-    public double getHoraEntrada() {
+    public String getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(double horaEntrada) {
+    public void setHoraEntrada(String horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public double getHoraSaida() {
+    public String getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(double horaSaida) {
+    public void setHoraSaida(String horaSaida) {
         this.horaSaida = horaSaida;
     }
 
@@ -58,8 +67,8 @@ public class Horario {
         int hash = 3;
         hash = 89 * hash + this.codigo;
         hash = 89 * hash + Objects.hashCode(this.dia);
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.horaEntrada) ^ (Double.doubleToLongBits(this.horaEntrada) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.horaSaida) ^ (Double.doubleToLongBits(this.horaSaida) >>> 32));
+      //  hash = 89 * hash + (int) (.doubleToLongBits(this.horaEntrada) ^ (Double.doubleToLongBits(this.horaEntrada) >>> 32));
+      //  hash = 89 * hash + (int) (Double.doubleToLongBits(this.horaSaida) ^ (Double.doubleToLongBits(this.horaSaida) >>> 32));
         return hash;
     }
 
@@ -78,12 +87,12 @@ public class Horario {
         if (!Objects.equals(this.dia, other.dia)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.horaEntrada) != Double.doubleToLongBits(other.horaEntrada)) {
+        /*if (Double.doubleToLongBits(this.horaEntrada) != Double.doubleToLongBits(other.horaEntrada)) {
             return false;
-        }
-        if (Double.doubleToLongBits(this.horaSaida) != Double.doubleToLongBits(other.horaSaida)) {
+        }*/
+      /*  if (Double.doubleToLongBits(this.horaSaida) != Double.doubleToLongBits(other.horaSaida)) {
             return false;
-        }
+        }*/
         return true;
     }
 

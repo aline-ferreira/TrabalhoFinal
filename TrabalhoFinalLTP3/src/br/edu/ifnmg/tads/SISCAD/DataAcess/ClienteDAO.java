@@ -11,6 +11,7 @@ import br.edu.ifnmg.tads.SISCAD.DataAcess.PessoaDAO;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.AvaliacaoDAO;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Mensalidade;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.TesteCarga;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,6 +72,72 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 return false;
             }
         }
+    }
+    
+    public void SalvarMensalidade(Cliente cliente,Mensalidade obj){
+        if(obj.getCodigo()==0){
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("insert into Mensalidades(valor,desconto,vencimento,status,IdCliente) values(?,?,?,?,?)");
+            sql.setDouble(1, obj.getValor());
+            sql.setDouble(2, obj.getDesconto());
+            sql.setDate(3, new java.sql.Date(obj.getDataVencimento().getTime()));
+            sql.setString(4, obj.getStatus());
+            sql.setInt(5,cliente.getCodigo());
+            sql.executeUpdate();
+          } catch(Exception ex){
+               System.err.println(ex.getMessage());
+          }
+        
+       }else{
+           try{
+           PreparedStatement sql= getConexao().prepareStatement("update Mensalidades set valor=?,desconto=?,vencimento=?,status=?,IdCliente=? where IdMensalidade=?");
+            sql.setDouble(1, obj.getValor());
+            sql.setDouble(2, obj.getDesconto());
+            sql.setDate(3, new java.sql.Date(obj.getDataVencimento().getTime()));
+            sql.setString(4, obj.getStatus());
+            sql.setInt(5,cliente.getCodigo());
+            sql.setInt(6,obj.getCodigo());
+            sql.executeQuery();
+           }catch(Exception ex){
+               
+           }
+       }
+        
+    }
+    
+    private  Mensalidade AbreMensalidade(ResultSet resultado){
+     try{  
+       Mensalidade mensalidade = new Mensalidade();
+       mensalidade.setCodigo(resultado.getInt("IdMensalidade"));
+       mensalidade.setDataVencimento(resultado.getDate("vencimento"));
+       mensalidade.setDesconto(resultado.getDouble("desconto"));
+       mensalidade.setStatus(resultado.getString("status"));
+       mensalidade.setValor(resultado.getDouble("valor"));
+       return mensalidade;
+        
+        
+      }catch(Exception ex){
+         System.err.println(ex.getMessage());
+         return null; 
+      }
+     
+  }
+    
+   public void AbrirHorarios(Cliente cliente){
+        
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("select from Mensalidades where IdCliente=?");
+            sql.setInt(1, cliente.getCodigo());
+            
+            ResultSet resultado= sql.executeQuery();
+             while(resultado.next()){
+                 cliente.addMensalidade(AbreMensalidade(resultado));
+             }
+        }catch(Exception ex){
+           System.err.println(ex.getMessage()); 
+        }
+        
+        
     }
     
      public boolean Apagar(int cod) {

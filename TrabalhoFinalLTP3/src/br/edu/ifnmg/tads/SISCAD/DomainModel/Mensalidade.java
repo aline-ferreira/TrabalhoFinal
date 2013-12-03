@@ -6,6 +6,8 @@
 
 package br.edu.ifnmg.tads.SISCAD.DomainModel;
 
+import java.util.Date;
+
 /**
  *
  * @author Aline
@@ -14,7 +16,7 @@ public class Mensalidade {
     
     private int codigo;
     private double valor;
-    private double dataVencimento;
+    private Date dataVencimento;
     private double desconto;
     private String status;
 
@@ -37,13 +39,14 @@ public class Mensalidade {
         this.valor = valor;
     }
 
-    public double getDataVencimento() {
+    public Date getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(double dataVencimento) {
+    public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
+
 
     public double getDesconto() {
         return desconto;

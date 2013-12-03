@@ -6,6 +6,7 @@
 package br.edu.ifnmg.tads.SISCAD.DataAcess;
 
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Horario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +38,10 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
                 sql.setInt(2, obj.getPessoa().getCodigo());
                 sql.setInt(3, obj.getAtivo());
                 sql.executeUpdate();
-
+                
+               for (Horario h : obj.getHorarios()) {
+                    SalvarHorarios(obj, h);
+                }
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -77,7 +81,8 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
 
  public List<Funcionario> ListarFuncionarios(){
         try {
-            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Funcionario F on P.IdPessoa = F.IdFuncionario where F.ativo = 1");
+            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Funcionario F"
+                                                                  + " on P.IdPessoa = F.IdFuncionario where F.ativo = 1");
 
             ResultSet resultado = sql.executeQuery();
 
@@ -169,6 +174,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
             if (resultado.next()) {
                 
                 funcionario.setCargo(cargoDAO.Abrir(resultado.getInt("idCargo")));
+                AbrirHorarios(funcionario);
                 return funcionario;
             } else {
                 return null;
@@ -178,5 +184,67 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
             System.err.println(ex.getMessage());
             return null;
         }
+    }
+    
+    public void SalvarHorarios(Funcionario funcionario, Horario obj){
+       if(obj.getCodigo()==0){
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("insert into Horarios(dia,horaEntrada,horaSaida,IdFuncionario) values(?,?,?,?)");
+            sql.setString(1, obj.getDia());
+            sql.setString(2, obj.getHoraEntrada());
+            sql.setString(3, obj.getHoraSaida());
+            sql.setInt(4, obj.getFuncionario().getCodigo());
+            sql.executeUpdate();
+          } catch(Exception ex){
+               System.err.println(ex.getMessage());
+          }
+        
+       }else{
+           try{
+           PreparedStatement sql= getConexao().prepareStatement("update Horarios set dia=?,horaEntrada=?,horaSaida=?,IdFuncionario=? where IdHorario=?");
+            sql.setString(1, obj.getDia());
+            sql.setString(2, obj.getHoraEntrada());
+            sql.setString(3, obj.getHoraSaida());
+            sql.setInt(4, obj.getFuncionario().getCodigo());
+            sql.setInt(5,obj.getCodigo());
+            sql.executeQuery();
+           }catch(Exception ex){
+               
+           }
+       }
+        
+    }
+    
+ private  Horario AbreHorario(ResultSet resultado){
+     try{  
+        Horario horario = new Horario();
+        horario.setCodigo(resultado.getInt("IdHorario"));
+        horario.setDia(resultado.getString("dia"));
+        horario.setHoraEntrada(resultado.getString("horaEntrada"));
+        horario.setHoraSaida(resultado.getString("horaSaida"));
+        return horario;
+        
+      }catch(Exception ex){
+         System.err.println(ex.getMessage());
+         return null; 
+      }
+     
+  }
+    
+    public void AbrirHorarios(Funcionario funcionario){
+        
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("select from Horarios where IdFuncionario=?");
+            sql.setInt(1, funcionario.getCodigo());
+            
+            ResultSet resultado= sql.executeQuery();
+             while(resultado.next()){
+                 funcionario.addHorario(AbreHorario(resultado));
+             }
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
+        
+        
     }
 }

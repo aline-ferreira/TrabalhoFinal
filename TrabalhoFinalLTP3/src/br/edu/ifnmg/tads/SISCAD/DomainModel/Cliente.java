@@ -73,6 +73,22 @@ public class Cliente extends Pessoa {
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
+    
+     public void addMensalidade(Mensalidade mensalidade) {
+        if (!mensalidades.contains(mensalidade)) {
+            mensalidades.add(mensalidade);
+        }
+    }
+
+    public void removeMensalidade(Mensalidade mensalidade) {
+        if (mensalidades.contains(mensalidade)) {
+            mensalidades.remove(mensalidade);
+        }
+    }
+
+    public List<Mensalidade> getMensalidade() {
+        return mensalidades;
+    }
 
     public Date getDataIngresso() {
         return dataIngresso;

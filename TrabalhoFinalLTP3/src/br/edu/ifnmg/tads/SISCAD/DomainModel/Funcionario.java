@@ -16,9 +16,7 @@ import java.util.Objects;
  */
 public class Funcionario extends Pessoa {
 
-    public static Object getLogger(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     private int codigo;
     private Cargo cargo;
     private Pessoa pessoa;
@@ -53,15 +51,31 @@ public class Funcionario extends Pessoa {
     public void setAtivo(int ativo) {
         this.ativo = ativo;
     }
+    
+     public void addHorario(Horario horario) {
+        if (!horarios.contains(horario)) {
+            horarios.add(horario);
+        }
+    }
+
+    public void removeHorario(Horario horario) {
+        if (horarios.contains(horario)) {
+            horarios.remove(horario);
+        }
+    }
+
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.codigo;
-        hash = 59 * hash + Objects.hashCode(this.cargo);
-        hash = 59 * hash + Objects.hashCode(this.pessoa);
-        hash = 59 * hash + this.ativo;
-        hash = 59 * hash + Objects.hashCode(this.horarios);
+        hash = 29 * hash + this.codigo;
+        hash = 29 * hash + Objects.hashCode(this.cargo);
+        hash = 29 * hash + Objects.hashCode(this.pessoa);
+        hash = 29 * hash + this.ativo;
+        hash = 29 * hash + Objects.hashCode(this.horarios);
         return hash;
     }
 
@@ -92,8 +106,7 @@ public class Funcionario extends Pessoa {
         return true;
     }
 
-   
-    
-    
+
+  
     
 }
