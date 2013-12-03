@@ -107,54 +107,43 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
     }
 
     public List<Funcionario> buscar(Funcionario filtro) {
-        try {
-
-            String sql = "select * from pessoa p join Funcionario f on p.IdPessoa = f.IdFuncionario where ativo = 1 ";
+         try {
+            String sql = "select * from Pessoa P join Funcionario F on P.IdPessoa = F.IdFuncionario where F.ativo = 1";
             String where = "";
 
-            if (filtro.getNome().length() > 0) {
-                if (where.length() > 0) {
-                    where = where + " and ";
+            if (filtro.getNome() != null) {
+                if (filtro.getNome().length() > 0) {
+                    where = " P.nome like '%" + filtro.getNome() + "%' ";
                 }
-                where = "nome like '%" + filtro.getNome() + "%'";
             }
 
             if (filtro.getCodigo() > 0) {
                 if (where.length() > 0) {
                     where = where + " and ";
                 }
-                where = where + " Idpessoa = " + filtro.getCodigo();
+                where = where + " F.IdFuncionario = " + filtro.getCodigo();
             }
 
             if (where.length() > 0) {
-                sql = sql + where;
+                sql = sql + " and " + where;
             }
 
             Statement comando = getConexao().createStatement();
-
             ResultSet resultado = comando.executeQuery(sql);
 
-            // Cria uma lista de produtos vazia
-            List<Funcionario> clientes = new LinkedList<>();
+
+            List<Funcionario> lista = new ArrayList<Funcionario>();
+
             while (resultado.next()) {
-                // Inicializa um objeto de produto vazio
-                Funcionario tmp = new Funcionario();
-                // Pega os valores do retorno da consulta e coloca no objeto
+                Funcionario obj = new Funcionario();
 
-                try {
-                    tmp.setCodigo(resultado.getInt("IdFuncionario"));
-                    tmp.setAtivo(resultado.getInt("Ativo"));
-                    //tmp.setCargo(resultado.getInt(""));
-                } catch (Exception ex) {
-                    Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                CarregaObjetoPessoa(obj, resultado);
 
-                // Pega o objeto e coloca na lista
-                clientes.add(tmp);
+                lista.add(obj);
             }
-            return clientes;
-        } catch (SQLException ex) {
-            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return lista;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
             return null;
         }
     }

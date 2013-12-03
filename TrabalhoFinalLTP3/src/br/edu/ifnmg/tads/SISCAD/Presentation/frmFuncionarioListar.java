@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmFuncionarioListar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form frmFuncionarioListar
+    FuncionarioDAO dao;
+     /* Creates new form frmFuncionarioListar
      */
     public frmFuncionarioListar() {
         initComponents();
-        FuncionarioDAO dao= new FuncionarioDAO();
+       dao= new FuncionarioDAO();
 
         List<Funcionario> funcionarios = dao.ListarFuncionarios();
 
@@ -107,7 +107,25 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+      Funcionario funcionario = new Funcionario();
+          //  pessoa.setNome(txtNome.getText());
+            try {
+                if (txtNome.getText().length() == 0) {
+                    List<Funcionario> lista = dao.ListarFuncionarios();
+                    preencheTabela(lista);
+                } else {
+                    funcionario.setNome(txtNome.getText());
+                    List<Funcionario> lista = dao.buscar(funcionario);
+                    preencheTabela(lista);
+
+                }
+         } catch (Exception ex) {
+              
+                System.err.print(ex);
+            }
+
+      
+
     }//GEN-LAST:event_btnBuscarActionPerformed
   private void preencheTabela(List<Funcionario> lista) {
         DefaultTableModel model = new DefaultTableModel();

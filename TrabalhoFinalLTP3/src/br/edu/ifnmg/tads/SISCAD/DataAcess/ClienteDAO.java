@@ -51,7 +51,9 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 for (TesteCarga t : obj.getTesteCarga()) {
                     testeCarga.SalvarTesteDeCarga(t, obj);
                 }
-                
+                for (Mensalidade m : obj.getMensalidade()) {
+                    SalvarMensalidade(obj,m);
+                }
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -123,7 +125,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
      
   }
     
-   public void AbrirHorarios(Cliente cliente){
+   public void AbrirMensalidades(Cliente cliente){
         
         try{
             PreparedStatement sql= getConexao().prepareStatement("select from Mensalidades where IdCliente=?");
@@ -247,6 +249,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 cliente.setCodigo(resultado.getInt("IdCliente"));
                 avaliacao.AbrirAvaliações(cliente);
                 teste.AbrirTestesCarga(cliente);
+                AbrirMensalidades(cliente);
                 
                 return cliente;
                 
