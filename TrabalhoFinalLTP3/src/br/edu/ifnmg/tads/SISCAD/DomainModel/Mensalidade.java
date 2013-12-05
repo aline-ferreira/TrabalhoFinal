@@ -7,6 +7,7 @@
 package br.edu.ifnmg.tads.SISCAD.DomainModel;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -53,6 +54,7 @@ public class Mensalidade {
     }
 
     public void setDesconto(double desconto) {
+        
         this.desconto = desconto;
     }
 
@@ -61,8 +63,49 @@ public class Mensalidade {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+      
+            this.status = status;
+     
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.codigo;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.dataVencimento);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.desconto) ^ (Double.doubleToLongBits(this.desconto) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.status);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mensalidade other = (Mensalidade) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataVencimento, other.dataVencimento)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.desconto) != Double.doubleToLongBits(other.desconto)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return true;
+    }
+
     
     
     

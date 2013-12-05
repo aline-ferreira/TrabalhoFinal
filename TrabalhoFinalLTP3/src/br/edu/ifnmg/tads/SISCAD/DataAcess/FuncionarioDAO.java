@@ -31,11 +31,11 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
     public boolean Salvar(Funcionario obj) {
 
         if (obj.getCodigo() == 0) {
+            super.Salvar(obj);
             try {
-                super.Salvar(obj.getPessoa());
-                PreparedStatement sql = getConexao().prepareStatement("insert into Funcionario(idCargo,idFuncionario, ativo) values(?,?,?)");
+                PreparedStatement sql = getConexao().prepareStatement("insert into Funcionario(idCargo,idFuncionario,ativo) values(?,?,?)");
                 sql.setInt(1, obj.getCargo().getCodigo());
-                sql.setInt(2, obj.getPessoa().getCodigo());
+                sql.setInt(2, obj.getCodigo());
                 sql.setInt(3, obj.getAtivo());
                 sql.executeUpdate();
                 
@@ -56,6 +56,9 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
                 sqlUpdate.setInt(2, 1);
                 sqlUpdate.setInt(3, obj.getCodigo());
                 sqlUpdate.executeUpdate();
+                for (Horario h : obj.getHorarios()) {
+                    SalvarHorarios(obj, h);
+                }
 
                 return true;
             } catch (Exception ex) {
@@ -184,8 +187,8 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
             sql.setString(3, obj.getHoraSaida());
             sql.setInt(4, obj.getFuncionario().getCodigo());
             sql.executeUpdate();
-          } catch(Exception ex){
-               System.err.println(ex.getMessage());
+          } catch(Exception ex){               
+              System.err.println(ex.getMessage());
           }
         
        }else{

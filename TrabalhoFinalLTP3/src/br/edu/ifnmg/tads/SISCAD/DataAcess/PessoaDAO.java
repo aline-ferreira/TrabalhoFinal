@@ -31,21 +31,21 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
     public boolean Salvar(Pessoa obj) {
         if (obj.getCodigo() == 0) {
             try {
-                PreparedStatement sql = getConexao().prepareStatement("insert into pessoa(Nome,Rg,Cpf,dataNascimento,sexo) values(?,?,?,?,?)");
+                PreparedStatement sql = getConexao().prepareStatement("insert into pessoa(Nome,Rg,Cpf,dataNascimento) values(?,?,?,?)");
                 sql.setString(1, obj.getNome());
                 sql.setString(2, obj.getRg());
                 sql.setString(3, obj.getCpf());
                 sql.setDate(4, new java.sql.Date(obj.getDataNascimento().getTime()));
-                sql.setString(5, obj.getSexo());
+              //  sql.setString(5, obj.getSexo());
 
                 sql.executeUpdate();
 
-                PreparedStatement sql2 = getConexao().prepareStatement("select idPessoa from pessoa where nome = ? and Rg = ? and Cpf=? and dataNascimento=? and sexo=?");
+                PreparedStatement sql2 = getConexao().prepareStatement("select idPessoa from pessoa where nome = ? and Rg = ? and Cpf=? and dataNascimento=? ");
                 sql2.setString(1, obj.getNome());
                 sql2.setString(2, obj.getRg());
                 sql2.setString(3, obj.getCpf());
                 sql2.setDate(4, new java.sql.Date(obj.getDataNascimento().getTime()));
-                sql2.setString(5, obj.getSexo());
+               // sql2.setString(5, obj.getSexo());
                 ResultSet resultado = sql2.executeQuery();
                 if (resultado.next()) {
                     obj.setCodigo(resultado.getInt("idPessoa"));
@@ -71,14 +71,25 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
             try {
                 Connection con = getConexao();
                 PreparedStatement sql = con.prepareStatement("update Pessoa set nome=?, Rg=?, cpf=?,"
-                        + " dataNascimento=?,sexo=? where idPessoa=?");
+                        + " dataNascimento=? where idPessoa=?");
                 sql.setString(1, obj.getNome());
                 sql.setString(2, obj.getRg());
                 sql.setString(3, obj.getCpf());
                 sql.setDate(4, new java.sql.Date(obj.getDataNascimento().getTime()));
-                sql.setString(5, obj.getSexo());
-                sql.setInt(6, obj.getCodigo());
+               // sql.setString(5, obj.getSexo());
+                sql.setInt(5, obj.getCodigo());
                 sql.executeUpdate();
+                for (Email e : obj.getEmails()) {
+                    SalvarEmail(obj, e);
+                }
+                //Salva o Endereco 
+                for (Endereco e : obj.getEnderecos()) {
+                    SalvarEndereco(obj, e);
+                }
+                // Salva o Telefone 
+                for (Telefone e : obj.getTelefones()) {
+                    SalvarTelefone(obj, e);
+                }
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -128,7 +139,7 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
                 obj.setRg(resultado.getString("Rg"));
                 obj.setCpf(resultado.getString("Cpf"));
                 obj.setDataNascimento(resultado.getDate("DataNascimento"));
-                obj.setSexo(resultado.getString("Sexo"));
+                //obj.setSexo(resultado.getString("Sexo"));
                 lista.add(obj);
             }
 

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.SISCAD.Presentation;
 
 import br.edu.ifnmg.tads.SISCAD.DataAcess.CargoDAO;
@@ -29,42 +28,41 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
     Funcionario funcionario;
     FuncionarioDAO dao;
     CargoDAO cargoDAO;
+
     /**
      * Creates new form frmFuncionarioEditar
      */
     public frmFuncionarioEditar(Funcionario f, FuncionarioDAO dao) {
-      initComponents();
-      cargoDAO = new CargoDAO();
-      carregaCargos();
-      this.funcionario=f;
-      this.dao= dao;
-       if (f.getCodigo() > 0) {
-       carregaCampos();
-       List<Telefone> telefones = funcionario.getTelefones();
-       atualizarTabelaTelefones(telefones);
-       List<Email> emails = funcionario.getEmails();
-       atualizarTabelaEmails(emails);
-       List<Endereco> enderecos = funcionario.getEnderecos();
-       atualizarTabelaEnderecos(enderecos);
-       List<Horario> horarios = funcionario.getHorarios();
-       atualizarTabelaHorarios(horarios);
-       }else{
-           
-       }
-        
-       }
+        initComponents();
+        cargoDAO = new CargoDAO();
+        carregaCargos();
+        this.funcionario = f;
+        this.dao = dao;
+        if (f.getCodigo() > 0) {
+            carregaCampos();
+            List<Telefone> telefones = funcionario.getTelefones();
+            atualizarTabelaTelefones(telefones);
+            List<Email> emails = funcionario.getEmails();
+            atualizarTabelaEmails(emails);
+            List<Endereco> enderecos = funcionario.getEnderecos();
+            atualizarTabelaEnderecos(enderecos);
+            List<Horario> horarios = funcionario.getHorarios();
+            atualizarTabelaHorarios(horarios);
+        } else {
 
-   
-  
-   private void carregaCampos() {
+        }
+
+    }
+
+    private void carregaCampos() {
         //lblId.setText(Integer.toString(cliente.getCodigo()));
         txtNome.setText(funcionario.getNome());
         txtDataNascimento.setText(String.valueOf(funcionario.getDataNascimento()));
         txtCPF.setText(funcionario.getCpf());
         txtRG.setText(funcionario.getRg());
-       
-       
+
     }
+
     private void carregaObjeto() {
         try {
 
@@ -72,21 +70,21 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
             funcionario.setDataNascimento(Date.valueOf(txtDataNascimento.getText()));
             funcionario.setCpf(txtCPF.getText());
             funcionario.setRg(txtRG.getText());
-            funcionario.setCargo((Cargo)cbxCargo.getSelectedItem());
+            funcionario.setCargo((Cargo) cbxCargo.getSelectedItem());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!!" + ex);
+            JOptionPane.showMessageDialog(rootPane,ex);
 
         }
 
     }
-   
-   private void carregaCargos(){
+
+    private void carregaCargos() {
         List<Cargo> cargos = cargoDAO.ListarCargos();
         cbxCargo.removeAllItems();
-        for(Cargo c : cargos){
+        for (Cargo c : cargos) {
             cbxCargo.addItem(c);
-         }
-   }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,6 +124,16 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblEmails = new javax.swing.JTable();
         btnAdicionarEmail = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label16 = new java.awt.Label();
+        label17 = new java.awt.Label();
+        label18 = new java.awt.Label();
+        txtDia = new javax.swing.JTextField();
+        txtHoraEntrada = new javax.swing.JTextField();
+        txtHoraSaida = new javax.swing.JTextField();
+        btnAdicionarHorario = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblHorarios = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         label9 = new java.awt.Label();
         txtRua = new javax.swing.JTextField();
@@ -141,16 +149,6 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEnderecos = new javax.swing.JTable();
         btnAdicionarEndereco = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        label16 = new java.awt.Label();
-        label17 = new java.awt.Label();
-        label18 = new java.awt.Label();
-        txtDia = new javax.swing.JTextField();
-        txtHoraEntrada = new javax.swing.JTextField();
-        txtHoraSaida = new javax.swing.JTextField();
-        btnAdicionarHorario = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblHorarios = new javax.swing.JTable();
         btnApagar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -379,6 +377,84 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("E-Mails", jPanel4);
 
+        label16.setText("Dia:");
+
+        label17.setText("Hora Entrada:");
+
+        label18.setText("Hora Saida:");
+
+        btnAdicionarHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ifnmg/tads/SISCAD/Imagens/7183_32x32.png"))); // NOI18N
+        btnAdicionarHorario.setText("Adicionar");
+        btnAdicionarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarHorarioActionPerformed(evt);
+            }
+        });
+
+        tblHorarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tblHorarios);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(txtHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39)
+                .addComponent(btnAdicionarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHoraEntrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAdicionarHorario))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Horarios", jPanel5);
+
         label9.setText("Rua:");
 
         label10.setText("Bairro:");
@@ -483,85 +559,12 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Enderecos", jPanel3);
 
-        label16.setText("Dia:");
-
-        label17.setText("Hora Entrada:");
-
-        label18.setText("Hora Saida:");
-
-        btnAdicionarHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ifnmg/tads/SISCAD/Imagens/7183_32x32.png"))); // NOI18N
-        btnAdicionarHorario.setText("Adicionar");
-        btnAdicionarHorario.addActionListener(new java.awt.event.ActionListener() {
+        btnApagar.setText("Apagar");
+        btnApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarHorarioActionPerformed(evt);
+                btnApagarActionPerformed(evt);
             }
         });
-
-        tblHorarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane4.setViewportView(tblHorarios);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(txtHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
-                .addComponent(btnAdicionarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHoraEntrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnAdicionarHorario))
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Horarios", jPanel5);
-
-        btnApagar.setText("Apagar");
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -616,19 +619,38 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDDDActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+     try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+
+                carregaObjeto();
+                funcionario.setAtivo(1);
+
+                if (dao.Salvar(funcionario)) {
+                    JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
+                    this.dispose();
+                }
+                  
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!!" + ex);
+        }
+
+                                            
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tblEnderecosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEnderecosMouseClicked
-      
+
     }//GEN-LAST:event_tblEnderecosMouseClicked
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-         Telefone t = new Telefone();
+        Telefone t = new Telefone();
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Adicionar o telefone? ") == 0) {
                 t.setTelefone(Integer.parseInt(txtDDD.getText()));
@@ -646,7 +668,7 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnAdicionarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarEmailActionPerformed
-         Email email = new Email();
+        Email email = new Email();
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Adicionar o Email? ") == 0) {
                 email.setEmail(txtEmail.getText());
@@ -663,7 +685,7 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarEmailActionPerformed
 
     private void btnAdicionarEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarEnderecoActionPerformed
-   
+
         Endereco endereco = new Endereco();
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Adicionar o Email? ") == 0) {
@@ -671,7 +693,7 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
                 endereco.setRua(txtRua.getText());
                 endereco.setBairro(txtBairro.getText());
                 endereco.setCidade(txtCidade.getText());
-                endereco.setNumero(Integer.parseInt(txtCEP.getText()));
+                endereco.setNumero(Integer.parseInt(txtNumero.getText()));
 
                 funcionario.addEndereco(endereco);
                 atualizarTabelaEnderecos(funcionario.getEnderecos());
@@ -686,14 +708,14 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarEnderecoActionPerformed
 
     private void btnAdicionarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarHorarioActionPerformed
-      Horario horario  = new Horario();
+        Horario horario = new Horario();
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Adicionar este horario de trabalho? ") == 0) {
                 horario.setDia(txtDia.getText());
                 horario.setHoraEntrada(txtHoraEntrada.getText());
                 horario.setHoraSaida(txtHoraSaida.getText());
                 funcionario.addHorario(horario);
-                atualizarTabelaEnderecos(funcionario.getEnderecos());
+                atualizarTabelaHorarios(funcionario.getHorarios());
                 JOptionPane.showMessageDialog(rootPane, "Horario salvo com sucesso! ");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Operação cancelada pelo usuário!");
@@ -703,11 +725,24 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!" + ex);
         }
     }//GEN-LAST:event_btnAdicionarHorarioActionPerformed
- 
-        
-    
-    
-    
+
+    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+       carregaObjeto();
+        dao.Remover(funcionario);
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?") == 0) {
+            try {
+                
+                JOptionPane.showMessageDialog(rootPane, "Operação realizada com sucesso! ");
+                this.dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir! " + ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Operação cancelada pelo usuario! ");
+        }
+    }//GEN-LAST:event_btnApagarActionPerformed
+
     private void atualizarTabelaTelefones(List<Telefone> telefones) {
 
         DefaultTableModel model = new DefaultTableModel();
@@ -724,10 +759,9 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         tblTelefones.setModel(model);
         tblTelefones.repaint();
 
-
     }
- 
-  private void atualizarTabelaEmails(List<Email> emails) {
+
+    private void atualizarTabelaEmails(List<Email> emails) {
 
         DefaultTableModel model = new DefaultTableModel();
         // model.addColumn("DDD");
@@ -741,9 +775,9 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         tblEmails.setModel(model);
         tblEmails.repaint();
 
-    }  
-  
-  private void atualizarTabelaEnderecos(List<Endereco> enderecos) {
+    }
+
+    private void atualizarTabelaEnderecos(List<Endereco> enderecos) {
 
         DefaultTableModel model = new DefaultTableModel();
         // model.addColumn("DDD");
@@ -752,7 +786,6 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         model.addColumn("Bairro");
         model.addColumn("Rua");
         model.addColumn("Numero");
-        
 
         for (Endereco e : enderecos) {
             Vector valores = new Vector();
@@ -767,15 +800,14 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
         tblEnderecos.repaint();
 
     }
-   private void atualizarTabelaHorarios(List<Horario> horarios) {
+
+    private void atualizarTabelaHorarios(List<Horario> horarios) {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Codigo");
         model.addColumn("Dia");
         model.addColumn("Hora Entrada");
         model.addColumn("Hora Saida");
-       
-        
 
         for (Horario h : horarios) {
             Vector valores = new Vector();
@@ -783,7 +815,7 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
             valores.add(1, h.getDia());
             valores.add(2, h.getHoraEntrada());
             valores.add(3, h.getHoraSaida());
-           
+
             model.addRow(valores);
         }
         tblHorarios.setModel(model);

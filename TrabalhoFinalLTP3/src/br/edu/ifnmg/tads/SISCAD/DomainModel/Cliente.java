@@ -31,7 +31,9 @@ public class Cliente extends Pessoa {
     }
 
     public Cliente() {
-
+        avaliacoes = new ArrayList<Avaliacao>();
+        mensalidades = new ArrayList<Mensalidade>();
+        testesCarga = new ArrayList<TesteCarga>();
     }
 
     public int getCodigo() {
@@ -73,12 +75,14 @@ public class Cliente extends Pessoa {
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
-    
-     public void addMensalidade(Mensalidade mensalidade) {
+     public void addMensalidade(Mensalidade mensalidade) throws Exception {
         if (!mensalidades.contains(mensalidade)) {
             mensalidades.add(mensalidade);
+        } else {
+            throw new Exception("Mensalidade cadstrada ja existe!");
         }
     }
+    
 
     public void removeMensalidade(Mensalidade mensalidade) {
         if (mensalidades.contains(mensalidade)) {

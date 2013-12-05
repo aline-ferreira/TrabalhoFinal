@@ -36,6 +36,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         mnuFuncionarios = new javax.swing.JMenuItem();
+        mnuClientes = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -60,7 +64,25 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(mnuFuncionarios);
 
+        mnuClientes.setText("Clientes");
+        mnuClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuClientesActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mnuClientes);
+
         jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Pagamentos");
+
+        jMenuItem2.setText("Mensalidades");
+        jMenu6.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Realatorios");
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -68,11 +90,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 864, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGap(0, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -83,6 +105,12 @@ public class frmPrincipal extends javax.swing.JFrame {
       add(janela);
       janela.setVisible(true);
     }//GEN-LAST:event_mnuFuncionariosActionPerformed
+
+    private void mnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClientesActionPerformed
+     frmClienteListar janela = new frmClienteListar();
+      add(janela);
+      janela.setVisible(true);
+    }//GEN-LAST:event_mnuClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,8 +153,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem mnuClientes;
     private javax.swing.JMenuItem mnuFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

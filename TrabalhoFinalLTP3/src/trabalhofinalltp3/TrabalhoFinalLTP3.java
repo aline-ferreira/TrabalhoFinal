@@ -33,7 +33,7 @@ public class TrabalhoFinalLTP3 {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        Pessoa pessoa= new Pessoa();
+     /*   Pessoa pessoa= new Pessoa();
         Telefone tel=new Telefone();
         Email email= new Email();
         Endereco endereco= new Endereco();

@@ -43,14 +43,14 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sql.setInt(2, obj.getAtivo());
                 sql.executeUpdate();
                 
-                  // Salva o email
-                for (Avaliacao a : obj.getAvaliacoes()) {
+              /*  // Salva o email
+               for (Avaliacao a : obj.getAvaliacoes()) {
                     avaliacao.Salvar(a, obj);
                 }
                 //Salva o Endereco 
                 for (TesteCarga t : obj.getTesteCarga()) {
                     testeCarga.SalvarTesteDeCarga(t, obj);
-                }
+                }*/
                 for (Mensalidade m : obj.getMensalidade()) {
                     SalvarMensalidade(obj,m);
                 }

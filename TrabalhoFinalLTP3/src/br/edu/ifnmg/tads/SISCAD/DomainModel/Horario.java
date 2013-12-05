@@ -64,11 +64,12 @@ public class Horario {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + this.codigo;
-        hash = 89 * hash + Objects.hashCode(this.dia);
-      //  hash = 89 * hash + (int) (.doubleToLongBits(this.horaEntrada) ^ (Double.doubleToLongBits(this.horaEntrada) >>> 32));
-      //  hash = 89 * hash + (int) (Double.doubleToLongBits(this.horaSaida) ^ (Double.doubleToLongBits(this.horaSaida) >>> 32));
+        int hash = 7;
+        hash = 61 * hash + this.codigo;
+        hash = 61 * hash + Objects.hashCode(this.dia);
+        hash = 61 * hash + Objects.hashCode(this.horaEntrada);
+        hash = 61 * hash + Objects.hashCode(this.horaSaida);
+        hash = 61 * hash + Objects.hashCode(this.funcionario);
         return hash;
     }
 
@@ -87,14 +88,20 @@ public class Horario {
         if (!Objects.equals(this.dia, other.dia)) {
             return false;
         }
-        /*if (Double.doubleToLongBits(this.horaEntrada) != Double.doubleToLongBits(other.horaEntrada)) {
+        if (!Objects.equals(this.horaEntrada, other.horaEntrada)) {
             return false;
-        }*/
-      /*  if (Double.doubleToLongBits(this.horaSaida) != Double.doubleToLongBits(other.horaSaida)) {
+        }
+        if (!Objects.equals(this.horaSaida, other.horaSaida)) {
             return false;
-        }*/
+        }
+        if (!Objects.equals(this.funcionario, other.funcionario)) {
+            return false;
+        }
         return true;
     }
+
+   
+   
 
     @Override
     public String toString() {

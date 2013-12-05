@@ -23,10 +23,15 @@ public class Funcionario extends Pessoa {
     private int ativo;
     private List<Horario> horarios;
     
-    public Funcionario() {
+    public Funcionario(List<Horario> horarios) {
         
         horarios= new ArrayList<Horario>();
     }
+
+    public Funcionario() {
+        this.horarios = horarios;
+    }
+    
 
     public Cargo getCargo() {
         return cargo;
