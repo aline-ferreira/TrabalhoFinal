@@ -37,6 +37,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         mnuFuncionarios = new javax.swing.JMenuItem();
         mnuClientes = new javax.swing.JMenuItem();
+        mnuExercicio = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -71,6 +72,14 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(mnuClientes);
+
+        mnuExercicio.setText("Exercicios");
+        mnuExercicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuExercicioActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mnuExercicio);
 
         jMenuBar1.add(jMenu5);
 
@@ -111,6 +120,12 @@ public class frmPrincipal extends javax.swing.JFrame {
       add(janela);
       janela.setVisible(true);
     }//GEN-LAST:event_mnuClientesActionPerformed
+
+    private void mnuExercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExercicioActionPerformed
+      frmExercicioListar janela = new frmExercicioListar();
+      add(janela);
+      janela.setVisible(true);
+    }//GEN-LAST:event_mnuExercicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +174,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuClientes;
+    private javax.swing.JMenuItem mnuExercicio;
     private javax.swing.JMenuItem mnuFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

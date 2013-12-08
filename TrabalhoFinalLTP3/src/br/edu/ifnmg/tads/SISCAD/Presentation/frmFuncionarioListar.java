@@ -147,7 +147,12 @@ public class frmFuncionarioListar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblListarFuncionariosMouseClicked
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+    Funcionario funcionario = new Funcionario();
+    FuncionarioDAO daoNulo= new FuncionarioDAO();
+        frmFuncionarioEditar janela = new frmFuncionarioEditar(funcionario,daoNulo);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnNovoActionPerformed
   private void preencheTabela(List<Funcionario> lista) {
         DefaultTableModel model = new DefaultTableModel();

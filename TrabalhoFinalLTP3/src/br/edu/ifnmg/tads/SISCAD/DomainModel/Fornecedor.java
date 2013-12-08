@@ -14,6 +14,7 @@ public class Fornecedor extends Pessoa{
     
     private int codigo;
     private String Cnpj;
+    private Aparelho aparelho;
 
     public Fornecedor() {
     }
@@ -32,6 +33,14 @@ public class Fornecedor extends Pessoa{
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public Aparelho getAparelho() {
+        return aparelho;
+    }
+
+    public void setAparelho(Aparelho aparelho) {
+        this.aparelho = aparelho;
     }
     
     

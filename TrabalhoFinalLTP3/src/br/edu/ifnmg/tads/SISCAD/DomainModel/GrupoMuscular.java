@@ -63,7 +63,7 @@ public class GrupoMuscular {
 
     @Override
     public String toString() {
-        return "GrupoMuscular{" + "codigo=" + codigo + ", nome=" + nome + '}';
+        return nome;
     }
      
     

@@ -29,7 +29,7 @@ public class Funcionario extends Pessoa {
     }
 
     public Funcionario() {
-        this.horarios = horarios;
+        horarios= new ArrayList<Horario>();
     }
     
 

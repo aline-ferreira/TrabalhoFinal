@@ -24,7 +24,7 @@ public class Cliente extends Pessoa {
     private Pessoa responsavel;
     private List<Mensalidade> mensalidades;
 
-    public Cliente(List<Avaliacao> avaliacoes, List<TesteCarga> testesCarga, List<Mensalidade> mensalidades) {
+    public Cliente(List<Avaliacao> avaliacoes, List<TesteCarga> testesCarga, List<Mensalidade> mensalidades){
         avaliacoes = new ArrayList<Avaliacao>();
         mensalidades = new ArrayList<Mensalidade>();
         testesCarga = new ArrayList<TesteCarga>();

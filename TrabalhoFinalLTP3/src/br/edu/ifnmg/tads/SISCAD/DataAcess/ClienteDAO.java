@@ -19,8 +19,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+//import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Date;
 /**
  *
  * @author ALUNO
@@ -43,7 +45,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sql.setInt(2, obj.getAtivo());
                 sql.executeUpdate();
                 
-              /*  // Salva o email
+              /* // Salva o email
                for (Avaliacao a : obj.getAvaliacoes()) {
                     avaliacao.Salvar(a, obj);
                 }
@@ -61,13 +63,15 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
             }
         } else {
             try {
-                super.Salvar(obj);
+                //super.Salvar(obj);
                 Connection con = getConexao();
                 PreparedStatement sqlUpdate = con.prepareStatement("update Cliente set ativo= ? where idCliente=?");
                 sqlUpdate.setInt(1, obj.getAtivo());
                 sqlUpdate.setInt(2, obj.getCodigo());
                 sqlUpdate.executeUpdate();
-              
+               for (Mensalidade m : obj.getMensalidade()) {
+                    SalvarMensalidade(obj,m);
+                }
                 return true;
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -115,6 +119,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
        mensalidade.setDesconto(resultado.getDouble("desconto"));
        mensalidade.setStatus(resultado.getString("status"));
        mensalidade.setValor(resultado.getDouble("valor"));
+      
        return mensalidade;
         
         
@@ -128,7 +133,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
    public void AbrirMensalidades(Cliente cliente){
         
         try{
-            PreparedStatement sql= getConexao().prepareStatement("select from Mensalidades where IdCliente=?");
+            PreparedStatement sql= getConexao().prepareStatement("select*from Mensalidades where IdCliente=?");
             sql.setInt(1, cliente.getCodigo());
             
             ResultSet resultado= sql.executeQuery();
@@ -248,7 +253,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
             if (resultado.next()) {
                 cliente.setCodigo(resultado.getInt("IdCliente"));
                 avaliacao.AbrirAvaliações(cliente);
-                teste.AbrirTestesCarga(cliente);
+                //teste.AbrirTestesCarga(cliente);
                 AbrirMensalidades(cliente);
                 
                 return cliente;

@@ -86,7 +86,7 @@ public class GrupoMuscularDAO extends Dao {
     // Listar 
     public List<GrupoMuscular> ListarTodos() {
         try {
-            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa");
+            PreparedStatement sql = getConexao().prepareStatement("select * from GrupoMuscular");
 
             ResultSet resultado = sql.executeQuery();
 
