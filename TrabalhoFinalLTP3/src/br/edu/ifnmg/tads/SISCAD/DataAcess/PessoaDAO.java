@@ -36,6 +36,8 @@ public class PessoaDAO<T extends Pessoa> extends Dao {
                 sql.setString(2, obj.getRg());
                 sql.setString(3, obj.getCpf());
                 sql.setDate(4, new java.sql.Date(obj.getDataNascimento().getTime()));
+                            
+                
               //  sql.setString(5, obj.getSexo());
 
                 sql.executeUpdate();

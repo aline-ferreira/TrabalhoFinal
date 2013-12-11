@@ -84,32 +84,9 @@ public class Funcionario extends Pessoa {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Funcionario other = (Funcionario) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.cargo, other.cargo)) {
-            return false;
-        }
-        if (!Objects.equals(this.pessoa, other.pessoa)) {
-            return false;
-        }
-        if (this.ativo != other.ativo) {
-            return false;
-        }
-        if (!Objects.equals(this.horarios, other.horarios)) {
-            return false;
-        }
-        return true;
-    }
+  
+  
+  
 
 
   

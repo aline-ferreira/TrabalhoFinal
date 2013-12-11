@@ -16,6 +16,7 @@ public class Exercicio {
     private int codigo;
     private String nome;
     private GrupoMuscular grupoMuscular;
+    private String tipo;
 
     public int getCodigo() {
         return codigo;
@@ -39,6 +40,14 @@ public class Exercicio {
 
     public void setGrupoMuscular(GrupoMuscular grupoMuscular) {
         this.grupoMuscular = grupoMuscular;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
@@ -69,6 +78,11 @@ public class Exercicio {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
     
     

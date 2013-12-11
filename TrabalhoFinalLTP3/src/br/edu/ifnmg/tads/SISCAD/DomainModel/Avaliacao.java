@@ -36,6 +36,15 @@ public class Avaliacao {
     private double panturrilhaDireita;
     private double panturrilhaEsquerda;
     private Anamnese anamnese;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Avaliacao() {
     }
@@ -99,8 +108,10 @@ public class Avaliacao {
         return IMC;
     }
 
-    public void setIMC(double IMC) {
-        this.IMC = IMC;
+    public void setIMC(Double IMC) {
+       
+           this.IMC = IMC; 
+          
     }
 
     public double getPesoIdeal() {
@@ -215,13 +226,113 @@ public class Avaliacao {
         this.panturrilhaEsquerda = panturrilhaEsquerda;
     }
 
-    public Object getCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + this.codigo;
+        hash = 79 * hash + Objects.hashCode(this.data);
+        hash = 79 * hash + Objects.hashCode(this.atestado);
+        hash = 79 * hash + Objects.hashCode(this.vencimento);
+        hash = 79 * hash + Objects.hashCode(this.funcionario);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.IMC) ^ (Double.doubleToLongBits(this.IMC) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.pesoIdeal) ^ (Double.doubleToLongBits(this.pesoIdeal) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.altura) ^ (Double.doubleToLongBits(this.altura) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.peso) ^ (Double.doubleToLongBits(this.peso) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.cintura) ^ (Double.doubleToLongBits(this.cintura) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.quadril) ^ (Double.doubleToLongBits(this.quadril) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.gorduraAbdominal) ^ (Double.doubleToLongBits(this.gorduraAbdominal) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.bicepsDireito) ^ (Double.doubleToLongBits(this.bicepsDireito) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.bicepsEsquerdo) ^ (Double.doubleToLongBits(this.bicepsEsquerdo) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.coxaDireita) ^ (Double.doubleToLongBits(this.coxaDireita) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.coxaEsquerda) ^ (Double.doubleToLongBits(this.coxaEsquerda) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.torax) ^ (Double.doubleToLongBits(this.torax) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.percentualGordura) ^ (Double.doubleToLongBits(this.percentualGordura) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.panturrilhaDireita) ^ (Double.doubleToLongBits(this.panturrilhaDireita) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.panturrilhaEsquerda) ^ (Double.doubleToLongBits(this.panturrilhaEsquerda) >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.anamnese);
+        hash = 79 * hash + Objects.hashCode(this.status);
+        return hash;
     }
 
-    public void setDd(byte aByte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Avaliacao other = (Avaliacao) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.atestado, other.atestado)) {
+            return false;
+        }
+        if (!Objects.equals(this.vencimento, other.vencimento)) {
+            return false;
+        }
+        if (!Objects.equals(this.funcionario, other.funcionario)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.IMC) != Double.doubleToLongBits(other.IMC)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.pesoIdeal) != Double.doubleToLongBits(other.pesoIdeal)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.altura) != Double.doubleToLongBits(other.altura)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.peso) != Double.doubleToLongBits(other.peso)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.cintura) != Double.doubleToLongBits(other.cintura)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.quadril) != Double.doubleToLongBits(other.quadril)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.gorduraAbdominal) != Double.doubleToLongBits(other.gorduraAbdominal)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.bicepsDireito) != Double.doubleToLongBits(other.bicepsDireito)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.bicepsEsquerdo) != Double.doubleToLongBits(other.bicepsEsquerdo)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.coxaDireita) != Double.doubleToLongBits(other.coxaDireita)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.coxaEsquerda) != Double.doubleToLongBits(other.coxaEsquerda)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.torax) != Double.doubleToLongBits(other.torax)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.percentualGordura) != Double.doubleToLongBits(other.percentualGordura)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.panturrilhaDireita) != Double.doubleToLongBits(other.panturrilhaDireita)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.panturrilhaEsquerda) != Double.doubleToLongBits(other.panturrilhaEsquerda)) {
+            return false;
+        }
+        if (!Objects.equals(this.anamnese, other.anamnese)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return true;
     }
+
+   
 
  
     

@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 /**
  *
  * @author Aline
@@ -79,9 +80,12 @@ public class Pessoa {
         }
     }
 
-    public void removeEndereco(Endereco endereco) {
+    public void removeEndereco(Endereco endereco) throws Exception{
         if (enderecos.contains(endereco)) {
             enderecos.remove(endereco);
+        }else{
+            throw new Exception ("Endereço cadatrado ja existe!");
+            
         }
     }
 
@@ -133,7 +137,7 @@ public class Pessoa {
         if (verifica.matches()) {
             this.Cpf = Cpf;
         } else {
-            throw new Exception("CPF Invalido!(formato: 999.999.999-99)");
+            throw new ExcecoesValidacao("CPF Invalido!(formato: 999.999.999-99)","Cpf");
         }
     }
 
@@ -141,13 +145,14 @@ public class Pessoa {
         return DataNascimento;
     }
 
-    public void setDataNascimento(Date DataNascimento) {
+    public void setDataNascimento(Date DataNascimento)throws Exception {
         Calendar calendario = GregorianCalendar.getInstance();
         calendario.set(1900, 1, 1);
 
         if (calendario.getTime().before(DataNascimento)) {
             this.DataNascimento = DataNascimento;
-        }
+        }else
+            throw new ExcecoesValidacao("Data Invalida! ","Data");
     }
 
     public String getSexo() {
@@ -212,8 +217,11 @@ public class Pessoa {
         return true;
     }
 
-    public void getDataNascimento(String dataNascimento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String toString() {
+        return nome;
     }
+
+    
 
 }

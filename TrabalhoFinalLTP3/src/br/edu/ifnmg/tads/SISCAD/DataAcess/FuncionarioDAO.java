@@ -72,7 +72,7 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
     public boolean Apagar(int cod) {
         try {
             PreparedStatement sql = getConexao().
-                    prepareStatement("update Funcionario set ativo = 0 where IdCliente = ?");
+                    prepareStatement("update Funcionario set ativo = 0 where IdFuncionario = ?");
             sql.setInt(1, cod);
             sql.executeUpdate();
             return true;

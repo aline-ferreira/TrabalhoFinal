@@ -23,17 +23,20 @@ public class Cliente extends Pessoa {
     private List<TesteCarga> testesCarga;
     private Pessoa responsavel;
     private List<Mensalidade> mensalidades;
+    private ArrayList<Treino> treinos;
 
-    public Cliente(List<Avaliacao> avaliacoes, List<TesteCarga> testesCarga, List<Mensalidade> mensalidades){
+    public Cliente(List<Avaliacao> avaliacoes, List<TesteCarga> testesCarga, List<Mensalidade> mensalidades) {
         avaliacoes = new ArrayList<Avaliacao>();
         mensalidades = new ArrayList<Mensalidade>();
         testesCarga = new ArrayList<TesteCarga>();
+        treinos = new ArrayList<Treino>();
     }
 
     public Cliente() {
         avaliacoes = new ArrayList<Avaliacao>();
         mensalidades = new ArrayList<Mensalidade>();
         testesCarga = new ArrayList<TesteCarga>();
+        treinos = new ArrayList<Treino>();
     }
 
     public int getCodigo() {
@@ -75,14 +78,14 @@ public class Cliente extends Pessoa {
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
-     public void addMensalidade(Mensalidade mensalidade) throws Exception {
+
+    public void addMensalidade(Mensalidade mensalidade) throws Exception {
         if (!mensalidades.contains(mensalidade)) {
             mensalidades.add(mensalidade);
         } else {
-            throw new Exception("Mensalidade cadstrada ja existe!");
+            throw new Exception("Mensalidade cadastrada ja existe!");
         }
     }
-    
 
     public void removeMensalidade(Mensalidade mensalidade) {
         if (mensalidades.contains(mensalidade)) {
@@ -92,6 +95,23 @@ public class Cliente extends Pessoa {
 
     public List<Mensalidade> getMensalidade() {
         return mensalidades;
+    }
+    
+    
+    public void addTreino(Treino treino) {
+        if (!treinos.contains(treino)) {
+            treinos.add(treino);
+        }
+    }
+
+    public void removeTesteCarga(Treino treino) {
+        if (treinos.contains(treino)) {
+            treinos.remove(treino);
+        }
+    }
+
+    public List<Treino> getTreino() {
+        return treinos;
     }
 
     public Date getDataIngresso() {
@@ -123,37 +143,5 @@ public class Cliente extends Pessoa {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cliente other = (Cliente) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.dataIngresso, other.dataIngresso)) {
-            return false;
-        }
-        if (this.ativo != other.ativo) {
-            return false;
-        }
-        if (!Objects.equals(this.avaliacoes, other.avaliacoes)) {
-            return false;
-        }
-        if (!Objects.equals(this.testesCarga, other.testesCarga)) {
-            return false;
-        }
-        if (!Objects.equals(this.responsavel, other.responsavel)) {
-            return false;
-        }
-        if (!Objects.equals(this.mensalidades, other.mensalidades)) {
-            return false;
-        }
-        return true;
-    }
-
+   
 }

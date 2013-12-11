@@ -55,13 +55,15 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 sql.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
                 sql.setInt(18,obj.getFuncionario().getCodigo());
                 sql.executeUpdate();
+                
+               
 
                 //Pega o ID do objeto
                 PreparedStatement sql2 = getConexao().prepareStatement("select idAvaliacao from Avaliacao where IMC=? and pesoIdeal=? and "
                         + "altura=? and peso=? and cintura=? and quadril=? and gorduraAbdominal=?and "
                         + "bicepsDireito=? and bicepsEsquerdo=? and torax=? and coxaDireita=? and "
                         + " coxaEsquerda=? and panturrilhaDireita=? and panturrilhaEsquerda=? and "
-                        + "idCliente=? and data=? and vencimento=? and IdFuncionario" );
+                        + "idCliente=? and data=? and vencimento=? and IdFuncionario=?" );
                 sql2.setDouble(1, obj.getIMC());
                 sql2.setDouble(2, obj.getPesoIdeal());
                 sql2.setDouble(3, obj.getAltura());
@@ -84,7 +86,9 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 if (resultado.next()) {
                     obj.setCodigo(resultado.getInt("idAvaliacao"));
                 }
-                sql.executeUpdate();
+                
+               SalvarAtestadoMedico( obj.getAtestado(),obj);
+               SalvarAnamnese(obj.getAnamnese(),obj);
 
                 return true;
             } catch (Exception ex) {
@@ -119,6 +123,9 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
                 sqlUpdate.setDate(17, new java.sql.Date(obj.getVencimento().getTime()));
                 sqlUpdate.setInt(18,obj.getFuncionario().getCodigo());
                 sqlUpdate.setInt(19, obj.getCodigo());
+                
+                SalvarAtestadoMedico(obj.getAtestado(),obj);
+                SalvarAnamnese(obj.getAnamnese(),obj);
 
                 sqlUpdate.executeUpdate();
 

@@ -15,6 +15,8 @@ public class Treino {
     private int repetições;
     private int serie;
     private double duração;
+    private double carga;
+    private String tipo;
     private Exercicio exercicio;
 
     public Treino() {
@@ -59,6 +61,24 @@ public class Treino {
     public void setExercicio(Exercicio exercicio) {
         this.exercicio = exercicio;
     }
+
+    public double getCarga() {
+        return carga;
+    }
+
+    public void setCarga(double carga) {
+        this.carga = carga;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     
     
     

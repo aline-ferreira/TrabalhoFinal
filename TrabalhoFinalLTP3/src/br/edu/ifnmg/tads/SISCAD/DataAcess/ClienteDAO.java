@@ -13,6 +13,7 @@ import br.edu.ifnmg.tads.SISCAD.DomainModel.Avaliacao;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Mensalidade;
 import br.edu.ifnmg.tads.SISCAD.DomainModel.TesteCarga;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Treino;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +37,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
    
     public boolean Salvar(Cliente obj) {
 
-        if (obj.getCodigo() == 0) {
+       if (obj.getCodigo() == 0) {
            super.Salvar(obj);
             try {
                 
@@ -45,16 +46,19 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sql.setInt(2, obj.getAtivo());
                 sql.executeUpdate();
                 
-              /* // Salva o email
+              /*
                for (Avaliacao a : obj.getAvaliacoes()) {
                     avaliacao.Salvar(a, obj);
                 }
-                //Salva o Endereco 
+               
                 for (TesteCarga t : obj.getTesteCarga()) {
                     testeCarga.SalvarTesteDeCarga(t, obj);
                 }*/
                 for (Mensalidade m : obj.getMensalidade()) {
                     SalvarMensalidade(obj,m);
+                }
+                for (Treino t : obj.getTreino()) {
+                    SalvarTreino(obj,t);
                 }
                 return true;
             } catch (Exception ex) {
@@ -71,6 +75,9 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 sqlUpdate.executeUpdate();
                for (Mensalidade m : obj.getMensalidade()) {
                     SalvarMensalidade(obj,m);
+                }
+               for (Treino t : obj.getTreino()) {
+                    SalvarTreino(obj,t);
                 }
                 return true;
             } catch (Exception ex) {
@@ -162,7 +169,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
     
  public List<Cliente> Listar(){
         try {
-            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Cliente C on P.IdPessoa = C.IdCliente  where C.ativo = 1");
+            PreparedStatement sql = getConexao().prepareStatement("select * from Pessoa P join Cliente C on P.IdPessoa = C.IdCliente  where C.ativo=1");
 
             ResultSet resultado = sql.executeQuery();
 
@@ -172,6 +179,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                Cliente obj = new Cliente();
 
                 super.CarregaObjetoPessoa(obj, resultado);
+              
 
                 obj.setCodigo(resultado.getInt("IdPessoa"));
                 obj.setAtivo(resultado.getInt("ativo"));
@@ -255,6 +263,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
                 avaliacao.AbrirAvaliações(cliente);
                 //teste.AbrirTestesCarga(cliente);
                 AbrirMensalidades(cliente);
+                AbrirTreinos(cliente);
                 
                 return cliente;
                 
@@ -267,6 +276,85 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
             return null;
         }
       
+    }
+    
+    
+      public void SalvarTreino(Cliente cliente,Treino obj){
+        if(obj.getCodigo()==0){
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("insert into Treino(repeticoes,duracao,IdExercicio,"
+                                                                  + "IdCliente,carga,serie) values(?,?,?,?,?,?)");
+            sql.setDouble(1, obj.getRepetições());
+            sql.setDouble(2, obj.getDuração());
+            sql.setInt(3, obj.getExercicio().getCodigo());
+            sql.setInt(4,cliente.getCodigo());
+            sql.setDouble(5,obj.getCarga());
+            sql.setInt(6,obj.getSerie());
+            sql.executeUpdate();
+          } catch(Exception ex){
+               System.err.println(ex.getMessage());
+          }
+        
+       }else{
+           try{
+            PreparedStatement sql= getConexao().prepareStatement("update Treino set repeticoes=?,duracao=?,IdExercicio=?,"
+                                                                   + "idCliente=?,carga=?,serie=? where IdTreino=?");
+            sql.setDouble(1, obj.getRepetições());
+            sql.setDouble(2, obj.getDuração());
+            sql.setInt(3, obj.getExercicio().getCodigo());
+            sql.setInt(4,cliente.getCodigo());
+            sql.setDouble(5,obj.getCarga());
+             sql.setInt(6,obj.getSerie());
+            sql.setInt(7,obj.getCodigo());
+            
+            sql.executeUpdate();
+           
+            sql.executeQuery();
+           }catch(Exception ex){
+               
+           }
+       }
+        
+    }
+      
+      
+  private  Treino AbreTreino(ResultSet resultado){
+      ExercicioDAO exercicio= new ExercicioDAO();
+     try{  
+      Treino treino = new Treino();
+      treino.setCodigo(resultado.getInt("IdTreino"));
+      treino.setDuração(resultado.getDouble("duracao"));
+      treino.setRepetições(resultado.getInt("repeticoes"));
+      treino.setCarga(resultado.getDouble("carga"));
+      treino.setExercicio(exercicio.AbrirExercicio(resultado.getInt("IdExercicio")));
+      treino.setSerie(resultado.getInt("serie"));
+       
+      
+       return treino;
+        
+        
+      }catch(Exception ex){
+         System.err.println(ex.getMessage());
+         return null; 
+      }
+     
+  }
+    
+   public void AbrirTreinos(Cliente cliente){
+        
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("select*from Treino where IdCliente=?");
+            sql.setInt(1, cliente.getCodigo());
+            
+            ResultSet resultado= sql.executeQuery();
+             while(resultado.next()){
+                 cliente.addTreino(AbreTreino(resultado));
+             }
+        }catch(Exception ex){
+           System.err.println(ex.getMessage()); 
+        }
+        
+        
     }
     
     

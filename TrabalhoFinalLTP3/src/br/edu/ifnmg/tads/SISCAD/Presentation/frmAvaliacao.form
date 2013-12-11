@@ -29,17 +29,19 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jTabbedPane1" min="-2" pref="598" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="bntAdicionar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="btnCancelar1" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="btnSalvar" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jTabbedPane1" min="-2" pref="767" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,8 +52,9 @@
               <Component id="jTabbedPane1" min="-2" pref="502" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSalvar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="bntAdicionar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="btnCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnCancelar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
@@ -75,37 +78,98 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="593" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label4" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="status" pref="157" max="32767" attributes="0"/>
+                                  <Component id="txtVencimento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtData" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="label5" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbxFuncionario" min="-2" pref="157" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="499" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="474" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="label2" max="32767" attributes="0"/>
+                          <Component id="txtData" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="label3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtVencimento" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="label4" min="-2" max="-2" attributes="0"/>
+                          <Component id="status" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxFuncionario" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="296" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Medidas">
-                <Property name="tabTitle" type="java.lang.String" value="Medidas"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="593" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="474" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <SubComponents>
+            <Component class="java.awt.Label" name="label2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data:"/>
+              </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Data: "/>
+              </AccessibilityProperties>
+            </Component>
+            <Component class="java.awt.Label" name="label3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Vencimento:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Status:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbxFuncionario">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Funcionario:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtData">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtVencimento">
+            </Component>
+            <Component class="javax.swing.JTextField" name="status">
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
@@ -119,15 +183,94 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="593" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="label17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtEmissao" min="-2" pref="265" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="label18" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="label19" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtMedico" pref="265" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="373" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="474" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label17" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmissao" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label18" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMedico" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label19" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="227" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="java.awt.Label" name="label17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data Emissao: "/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Medico: "/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtEmissao">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMedico">
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="txtObservacao">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
@@ -141,24 +284,352 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="593" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="label22" min="-2" max="-2" attributes="0"/>
+                          <Component id="label21" min="-2" max="-2" attributes="0"/>
+                          <Component id="label20" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtAlergia" alignment="0" pref="270" max="32767" attributes="0"/>
+                          <Component id="txtDoenca" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtRemedio" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="392" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="474" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label20" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtAlergia" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="label21" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtDoenca" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="label22" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRemedio" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="311" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="java.awt.Label" name="label20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alergia(s):"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Doen&#xe7;a (s):"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rem&#xe9;dios:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtAlergia">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDoenca">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtRemedio">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Medidas">
+                <Property name="tabTitle" type="java.lang.String" value="Medidas"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label23" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtAltura" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="txtIMC" min="-2" pref="91" max="-2" attributes="0"/>
+                                      <Component id="txtPeso" min="-2" pref="91" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCintura" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="txtQuadril" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="txtTorax" min="-2" pref="91" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="label10" min="-2" pref="114" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtGordura" min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="label12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="label11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="label16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="label14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="label13" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="label24" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="label15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtPesoIdeal" alignment="0" pref="83" max="32767" attributes="0"/>
+                          <Component id="txtBicepsDireito" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCoxaEsquerda" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPanturrilhaEsquerda" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCoxaDireita" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPanturrilhaDireita" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBicepsEsquerdo" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="184" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtIMC" max="32767" attributes="0"/>
+                          <Component id="label23" max="32767" attributes="0"/>
+                          <Component id="label24" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPesoIdeal" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="label1" max="32767" attributes="0"/>
+                                  <Component id="txtPeso" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtAltura" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCintura" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtQuadril" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label13" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPanturrilhaDireita" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="label15" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCoxaDireita" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtPanturrilhaEsquerda" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label14" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label16" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCoxaEsquerda" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label9" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTorax" min="-2" max="-2" attributes="0"/>
+                          <Component id="label11" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBicepsDireito" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label12" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtGordura" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtBicepsEsquerdo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="java.awt.Label" name="label1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Peso:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Altura:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cintura:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Quadril:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Torax:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gordura Abdominal:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Biceps Direito:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Biceps Esquerdo:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Panturrilha Direita:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Coxa Direita:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Panturrilha Esquerda:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Coxa Esquerda:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPeso">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtAltura">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCintura">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtQuadril">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtTorax">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtBicepsDireito">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtGordura">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPanturrilhaDireita">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPanturrilhaEsquerda">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCoxaDireita">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCoxaEsquerda">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtBicepsEsquerdo">
+            </Component>
+            <Component class="java.awt.Label" name="label23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="IMC:"/>
+              </Properties>
+            </Component>
+            <Component class="java.awt.Label" name="label24">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Peso Ideal:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtIMC">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPesoIdeal">
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnSalvar">
+    <Component class="javax.swing.JButton" name="bntAdicionar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAdicionarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apagar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCancelar1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>

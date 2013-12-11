@@ -22,11 +22,11 @@ public class ExercicioDAO extends Dao{
      public boolean Salvar( Exercicio obj) {
         if (obj.getCodigo() == 0) {
             try {
-                PreparedStatement sql = getConexao().prepareStatement("insert into Exercicio(Nome, IdGrupoMuscular) values(?,?)");
+                PreparedStatement sql = getConexao().prepareStatement("insert into Exercicio(Nome, IdGrupoMuscular,tipo) values(?,?,?)");
                 sql.setString(1, obj.getNome());
                 sql.setInt(2, obj.getGrupoMuscular().getCodigo());
-              //  sql.setString(5, obj.getSexo());
-
+                sql.setString(3,obj.getTipo());
+            
                 sql.executeUpdate();
 
                 PreparedStatement sql2 = getConexao().prepareStatement("select IdExercicio from Exercicio where nome = ? and IdGrupoMuscular = ? ");
@@ -46,10 +46,11 @@ public class ExercicioDAO extends Dao{
         } else {
             try {
                 Connection con = getConexao();
-                PreparedStatement sql = con.prepareStatement("update Exercicio set nome=?,IdGrupoMuscular=? where idExercicio=?");
+                PreparedStatement sql = con.prepareStatement("update Exercicio set nome=?,IdGrupoMuscular=?, tipo=? where idExercicio=?");
                 sql.setString(1, obj.getNome());
                 sql.setInt(2, obj.getGrupoMuscular().getCodigo());
-                sql.setInt(5, obj.getCodigo());
+                sql.setString(3,obj.getTipo());
+                sql.setInt(3, obj.getCodigo());
                 sql.executeUpdate();
                 
                 return true;
@@ -63,7 +64,7 @@ public class ExercicioDAO extends Dao{
     public Exercicio AbrirExercicio(int id) {
         try {
             PreparedStatement sql = getConexao().prepareStatement("select * from Exercicio"
-                    + " where idExercicio=?");
+                                                                  + " where idExercicio=?");
             sql.setInt(1, id);
 
             ResultSet resultado = sql.executeQuery();
@@ -74,6 +75,7 @@ public class ExercicioDAO extends Dao{
                  obj.setCodigo(resultado.getInt("IdExercicio"));
                  obj.setGrupoMuscular(dao.Abrir(resultado.getInt("IdGrupoMuscular")));
                  obj.setNome(resultado.getString("Nome"));
+                 obj.setTipo(resultado.getString("Tipo"));
                  return obj;
 
               } else{
@@ -100,6 +102,7 @@ public class ExercicioDAO extends Dao{
                 obj.setCodigo(resultado.getInt("IdExercicio"));
                 obj.setGrupoMuscular(dao.Abrir(resultado.getInt("IdGrupoMuscular")));
                 obj.setNome(resultado.getString("Nome"));
+                obj.setTipo(resultado.getString("Tipo"));
                 
                 lista.add(obj);
             }

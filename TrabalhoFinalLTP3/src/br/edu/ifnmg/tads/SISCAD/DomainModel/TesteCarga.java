@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Aline
  */
 public class TesteCarga {
-   private int codigo;
+    private int codigo;
     private double cargaSupramaxima;
     private int repeticoesMaximas;
     private Date data;
