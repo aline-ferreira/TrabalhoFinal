@@ -49,6 +49,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        mnu = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -112,6 +113,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Realatorios");
+
+        mnu.setText("Avaliações");
+        mnu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuActionPerformed(evt);
+            }
+        });
+        jMenu7.add(mnu);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -160,6 +170,10 @@ public class frmPrincipal extends javax.swing.JFrame {
       janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void mnuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuActionPerformed
+        
+    }//GEN-LAST:event_mnuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,6 +221,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem mnu;
     private javax.swing.JMenuItem mnuClientes;
     private javax.swing.JMenuItem mnuExercicio;
     private javax.swing.JMenuItem mnuFuncionarios;

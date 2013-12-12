@@ -114,10 +114,11 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario> {
             String sql = "select * from Pessoa P join Funcionario F on P.IdPessoa = F.IdFuncionario where F.ativo = 1";
             String where = "";
 
-            if (filtro.getNome() != null) {
-                if (filtro.getNome().length() > 0) {
-                    where = " P.nome like '%" + filtro.getNome() + "%' ";
+            if (filtro.getNome().length() > 0) {
+                if (where.length() > 0) {
+                    where = where + " and ";
                 }
+                where = "nome like '%" + filtro.getNome() + "%'";
             }
 
             if (filtro.getCodigo() > 0) {

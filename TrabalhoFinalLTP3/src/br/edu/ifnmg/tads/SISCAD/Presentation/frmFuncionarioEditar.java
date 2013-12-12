@@ -625,13 +625,14 @@ public class frmFuncionarioEditar extends javax.swing.JInternalFrame {
                 carregaObjeto();
                 funcionario.setAtivo(1);
 
-                usuario.setFuncionario(funcionario);
-                usuario.setLogin(txtLogin.getText());
-                usuario.setSenha(ptxtSenha.getText());
+                
 
                
 
                 if (dao.Salvar(funcionario)) {
+                    usuario.setFuncionario(funcionario);
+                usuario.setLogin(txtLogin.getText());
+                usuario.setSenha(ptxtSenha.getText());
                      usuarioDAO.Salvar(usuario);
                     JOptionPane.showMessageDialog(rootPane, "Salvo com sucesso!");
                     this.dispose();

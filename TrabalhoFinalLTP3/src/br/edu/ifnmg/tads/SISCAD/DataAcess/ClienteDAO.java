@@ -40,7 +40,7 @@ public class ClienteDAO extends PessoaDAO<Cliente> {
 
     public boolean Salvar(Cliente obj) {
 
-        if (obj.getCodigo() == 0) {
+      if (obj.getCodigo() == 0) {
             super.Salvar(obj);
             try {
 
