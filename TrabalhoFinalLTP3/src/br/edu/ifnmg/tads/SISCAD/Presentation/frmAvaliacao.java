@@ -81,13 +81,13 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
         avaliacao.setPanturrilhaDireita(Double.parseDouble(txtPanturrilhaDireita.getText()));
         avaliacao.setPanturrilhaEsquerda(Double.parseDouble(txtPanturrilhaEsquerda.getText()));
         avaliacao.setQuadril(Double.parseDouble(txtQuadril.getText()));
-        avaliacao.setData(Date.valueOf(txtData.getText()));
-        avaliacao.setVencimento(Date.valueOf(txtVencimento.getText()));
+        avaliacao.setData((Date)txtData.getValue());
+        avaliacao.setVencimento((Date) txtVencimento.getValue());
         avaliacao.setIMC(Double.parseDouble(txtIMC.getText()));
         avaliacao.setPesoIdeal(Double.parseDouble(txtPesoIdeal.getText()));
 
         //carrega atestado
-        atestado.setDataEmissao(Date.valueOf(txtEmissao.getText()));
+        atestado.setDataEmissao((Date)txtDataEmissao.getValue());
         atestado.setMedico(txtMedico.getText());
         atestado.setObservacao(txtObservacao.getText());
         avaliacao.setAtestado(atestado);
@@ -126,17 +126,17 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
         label4 = new java.awt.Label();
         cbxFuncionario = new javax.swing.JComboBox();
         label5 = new java.awt.Label();
-        txtData = new javax.swing.JTextField();
-        txtVencimento = new javax.swing.JTextField();
         status = new javax.swing.JTextField();
+        txtData = new javax.swing.JFormattedTextField();
+        txtVencimento = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         label17 = new java.awt.Label();
         label18 = new java.awt.Label();
         label19 = new java.awt.Label();
-        txtEmissao = new javax.swing.JTextField();
         txtMedico = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservacao = new javax.swing.JTextArea();
+        txtDataEmissao = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         label20 = new java.awt.Label();
         label21 = new java.awt.Label();
@@ -191,6 +191,10 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
 
         label5.setText("Funcionario:");
 
+        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
+        txtVencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,9 +209,10 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
                             .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(txtVencimento)
-                            .addComponent(txtData)))
+                            .addComponent(txtData)
+                            .addComponent(txtVencimento, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(status))
+                        .addGap(32, 32, 32))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,9 +223,9 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtData))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,6 +255,8 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
         txtObservacao.setRows(5);
         jScrollPane1.setViewportView(txtObservacao);
 
+        txtDataEmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -260,7 +267,7 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDataEmissao))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -278,9 +285,9 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -605,9 +612,9 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCintura;
     private javax.swing.JTextField txtCoxaDireita;
     private javax.swing.JTextField txtCoxaEsquerda;
-    private javax.swing.JTextField txtData;
+    private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JFormattedTextField txtDataEmissao;
     private javax.swing.JTextField txtDoenca;
-    private javax.swing.JTextField txtEmissao;
     private javax.swing.JTextField txtGordura;
     private javax.swing.JTextField txtIMC;
     private javax.swing.JTextField txtMedico;
@@ -619,6 +626,6 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtQuadril;
     private javax.swing.JTextField txtRemedio;
     private javax.swing.JTextField txtTorax;
-    private javax.swing.JTextField txtVencimento;
+    private javax.swing.JFormattedTextField txtVencimento;
     // End of variables declaration//GEN-END:variables
 }

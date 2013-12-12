@@ -9,6 +9,8 @@ package br.edu.ifnmg.tads.SISCAD.DomainModel;
 import br.edu.ifnmg.tads.SISCAD.DataAcess.ClienteDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,11 +22,18 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
      * Creates new form frmPagamentoCadastrar
      */
     ClienteDAO clienteDAO;
+    List<Mensalidade> mensalidades;
+    Cliente cliente= new Cliente();
     public frmPagamentoCadastrar() {
         
         initComponents();
         clienteDAO= new ClienteDAO();
         carregaClientes();
+         Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
+         cliente= clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
+         mensalidades= new ArrayList();
+         mensalidades= cliente.getMensalidade();
+         atualizarTabelaMensalidades(mensalidades);
     }
 
     private void carregaClientes() {
@@ -36,6 +45,8 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
             cbxClientes.addItem(c);
         }
     }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,6 +60,7 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMensalidades = new javax.swing.JTable();
@@ -90,6 +102,13 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setText("Cartão de Crédito");
 
+        jButton2.setText("Abrir Mensalidade");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,8 +118,10 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(cbxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -108,16 +129,18 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
                             .addComponent(jRadioButton1)
                             .addComponent(jRadioButton3)
                             .addComponent(jRadioButton4))))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbxClientes)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbxClientes)
+                        .addComponent(jButton2))
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(106, 106, 106)
+                .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1))
@@ -130,6 +153,12 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Dados Gerais", jPanel1);
 
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
+
         tblMensalidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -141,6 +170,11 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblMensalidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMensalidadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMensalidades);
 
         Valor.setText("Valor:");
@@ -230,15 +264,67 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxClientesActionPerformed
 
     private void cbxClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxClientesMouseClicked
-        // TODO add your handling code here:
+      Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
+      mensalidades= clienteSelecionado.getMensalidade();
+      atualizarTabelaMensalidades(mensalidades);
     }//GEN-LAST:event_cbxClientesMouseClicked
 
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+         
+    }//GEN-LAST:event_jPanel2MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+           
+        Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem(); 
+        cliente= clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
+         //mensalidades= new ArrayList();
+         mensalidades= cliente.getMensalidade();
+         atualizarTabelaMensalidades(mensalidades);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tblMensalidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMensalidadesMouseClicked
+       Object valor = tblMensalidades.getValueAt(tblMensalidades.getSelectedRow(),0);
+       Double pagar;
+       Mensalidade m = clienteDAO.AbrirMensalidade((int)valor);
+       txtValor.setText(String.valueOf(m.getValor()));
+       txtDesconto.setText(String.valueOf(m.getDesconto()));
+       pagar= m.getValor()-m.getDesconto();
+       txtValorPagar.setText(String.valueOf(pagar));
+      
+  
+    }//GEN-LAST:event_tblMensalidadesMouseClicked
+
+    private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) {  
+  
+}  
+private void atualizarTabelaMensalidades(List<Mensalidade> mensalidades) {
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Valor");
+        model.addColumn("Vencimento");
+        model.addColumn("Desconto");
+        model.addColumn("Status");
+
+        for (Mensalidade m : mensalidades) {
+            Vector valores = new Vector();
+            valores.add(0, m.getValor());
+            valores.add(1, m.getDataVencimento());
+            valores.add(2, m.getDesconto());
+            valores.add(3, m.getStatus());
+            model.addRow(valores);
+        }
+        tblMensalidades.setModel(model);
+        tblMensalidades.repaint();
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Valor;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbxClientes;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;

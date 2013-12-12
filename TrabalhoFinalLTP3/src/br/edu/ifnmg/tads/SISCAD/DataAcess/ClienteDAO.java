@@ -118,7 +118,7 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
         
     }
     
-    private  Mensalidade AbreMensalidade(ResultSet resultado){
+ private  Mensalidade AbreMensalidade(ResultSet resultado){
      try{  
        Mensalidade mensalidade = new Mensalidade();
        mensalidade.setCodigo(resultado.getInt("IdMensalidade"));
@@ -136,8 +136,8 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
       }
      
   }
-    
-   public void AbrirMensalidades(Cliente cliente){
+ 
+ public void AbrirMensalidades(Cliente cliente){
         
         try{
             PreparedStatement sql= getConexao().prepareStatement("select*from Mensalidades where IdCliente=?");
@@ -150,6 +150,33 @@ public class ClienteDAO extends PessoaDAO<Cliente>{
         }catch(Exception ex){
            System.err.println(ex.getMessage()); 
         }
+        
+        
+    }
+    
+   public Mensalidade AbrirMensalidade(int id){
+        
+        try{
+            PreparedStatement sql= getConexao().prepareStatement("select*from Mensalidades where IdMensalidade=?");
+            sql.setInt(1, id);
+            
+            ResultSet resultado= sql.executeQuery();
+             
+       Mensalidade mensalidade = new Mensalidade();
+       mensalidade.setCodigo(resultado.getInt("IdMensalidade"));
+       mensalidade.setDataVencimento(resultado.getDate("vencimento"));
+       mensalidade.setDesconto(resultado.getDouble("desconto"));
+       mensalidade.setStatus(resultado.getString("status"));
+       mensalidade.setValor(resultado.getDouble("valor"));
+      
+       return mensalidade;
+        
+            
+        }catch(Exception ex){
+           System.err.println(ex.getMessage()); 
+           return null;
+        }
+       
         
         
     }

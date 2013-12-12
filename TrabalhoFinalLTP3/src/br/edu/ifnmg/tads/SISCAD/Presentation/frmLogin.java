@@ -21,13 +21,13 @@ public class frmLogin extends javax.swing.JFrame {
     /**
      * Creates new form frmLogin
      */
+  
+    FuncionarioDAO funcionarioDAO= new FuncionarioDAO();
+    Funcionario funcionario = new Funcionario();
     
-    FuncionarioDAO funcionarioDAO;
-    Funcionario funcionario;
     public frmLogin() {
         initComponents();
-        funcionario= new Funcionario();
-        funcionarioDAO= new FuncionarioDAO();
+        
     }
 
    
@@ -134,7 +134,7 @@ public class frmLogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -164,8 +164,9 @@ public class frmLogin extends javax.swing.JFrame {
                 new frmLogin().setVisible(true);
             }
         });
+    }
 
-}
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -300,7 +300,8 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
         }
  }
  public void AbrirAvaliações(Cliente cliente) {
-        try {
+      
+     try {
             PreparedStatement sql = getConexao().prepareStatement("select*from Avaliacao where idCliente=?");
             sql.setInt(1, cliente.getCodigo());
 
@@ -317,7 +318,59 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
 
     }
  
- 
+ public Avaliacao AbrirAvaliacaoRecente(Cliente cliente){
+     
+    Avaliacao avaliacao = new Avaliacao();
+    FuncionarioDAO  funcionario = new FuncionarioDAO();
+    
+     try{ 
+         PreparedStatement sql= getConexao().prepareStatement("select max(IdAvaliacao)from Avaliacao where IdCliente=?");
+         sql.setInt(1, cliente.getCodigo());
+      
+         
+         ResultSet result = sql.executeQuery();
+            avaliacao.setCodigo(result.getInt("IdAvaliacao"));
+            
+         PreparedStatement sql2= getConexao().prepareStatement("select * avaliacao from where IdAvaliacao=?");
+         sql2.setInt(1, avaliacao.getCodigo());
+      
+         
+         ResultSet resultado = sql.executeQuery();
+            
+         if(resultado.next()){
+            avaliacao.setCodigo(resultado.getInt("IdAvaliacao"));
+            avaliacao.setAltura(resultado.getDouble("Altura"));
+            avaliacao.setBicepsDireito(resultado.getDouble("BicepsDireito"));
+            avaliacao.setBicepsEsquerdo(resultado.getDouble("BicepsEsquerdo"));
+            avaliacao.setCintura(resultado.getDouble("cintura"));
+            avaliacao.setCoxaDireita(resultado.getDouble("coxaDireita"));
+            avaliacao.setCoxaEsquerda(resultado.getDouble("coxaEsquerda"));
+            avaliacao.setGorduraAbdominal(resultado.getDouble("gorduraAbdominal"));
+            avaliacao.setAltura(resultado.getDouble("altura"));
+            avaliacao.setPanturrilhaDireita(resultado.getDouble("panturrilhaDireita"));
+            avaliacao.setPanturrilhaEsquerda(resultado.getDouble("panturrilhaEsquerda"));
+            avaliacao.setIMC(resultado.getDouble("IMC"));
+            avaliacao.setTorax(resultado.getDouble("torax"));
+            avaliacao.setPeso(resultado.getDouble("peso"));
+            avaliacao.setPesoIdeal(resultado.getDouble("PesoIdeal"));
+            avaliacao.setData(resultado.getDate("data"));
+            avaliacao.setVencimento(resultado.getDate("vencimento"));
+            avaliacao.setAtestado(AbrirAtestado(resultado.getInt("IdAvaliacao")));
+            avaliacao.setAnamnese(AbrirAnamnese(resultado.getInt("IdAvaliacao")));
+            avaliacao.setFuncionario(funcionario.AbrirFuncionario(resultado.getInt("IdFuncionario")));
+            
+            return avaliacao;
+         }else{
+             return null;
+         }
+         
+      } catch (Exception ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+          
+     
+ }
  
 
     
