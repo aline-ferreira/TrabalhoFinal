@@ -329,13 +329,12 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
       
          
          ResultSet result = sql.executeQuery();
-            avaliacao.setCodigo(result.getInt("IdAvaliacao"));
+         avaliacao.setCodigo(result.getInt("max(IdAvaliacao)"));
             
          PreparedStatement sql2= getConexao().prepareStatement("select * avaliacao from where IdAvaliacao=?");
          sql2.setInt(1, avaliacao.getCodigo());
       
-         
-         ResultSet resultado = sql.executeQuery();
+         ResultSet resultado = sql2.executeQuery();
             
          if(resultado.next()){
             avaliacao.setCodigo(resultado.getInt("IdAvaliacao"));

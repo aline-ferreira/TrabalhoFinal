@@ -38,7 +38,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         this.dao = dao;
 
        // if (c.getCodigo()>0) {
-        carregaCampos();
+       
         List<Telefone> telefones = cliente.getTelefones();
         atualizarTabelaTelefones(telefones);
         List<Email> emails = cliente.getEmails();
@@ -51,7 +51,8 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         atualizarTreinoMusculacao(treinos);
         List<Avaliacao> avaliacoes = cliente.getAvaliacoes();
         atualizarTabelaAvaliacoes(avaliacoes);
-      //  avaliacao= avaliacaoDAO.AbrirAvaliacaoRecente(cliente);
+        avaliacao= avaliacaoDAO.AbrirAvaliacaoRecente(cliente);
+        carregaCampos();
 
     }
 
@@ -62,8 +63,9 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             txtDataNascimento.setValue(cliente.getDataNascimento());
             txtCPF.setText(cliente.getCpf());
             txtRG.setText(cliente.getRg());
-         //   txtUltimaAvaliacao.setText(String.valueOf(avaliacao.getData()));
-           //  txtVencimentoAvaliacao.setText(String.valueOf(avaliacao.getVencimento()));
+            
+            txtUltimaAvaliacao.setText(String.valueOf(avaliacao.getData()));
+            txtVencimentoAvaliacao.setText(String.valueOf(avaliacao.getVencimento()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -149,6 +151,10 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tblAvaliacoes = new javax.swing.JTable();
         btnNovaAvaliacao = new javax.swing.JButton();
+        txtUltimaAvaliacao = new javax.swing.JTextField();
+        txtVencimentoAvaliacao = new javax.swing.JTextField();
+        label11 = new java.awt.Label();
+        jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         label27 = new java.awt.Label();
@@ -216,6 +222,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPF.setText("");
 
         txtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         txtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
@@ -309,8 +316,8 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
                         .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -518,6 +525,10 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             }
         });
 
+        label11.setText("Vencimento:");
+
+        jButton1.setText("Abrir");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -528,20 +539,32 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane5)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(577, 577, 577)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUltimaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVencimentoAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnNovaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUltimaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnNovaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVencimentoAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1121,6 +1144,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNovaAvaliacao;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxExercicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -1138,6 +1162,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private java.awt.Label label1;
     private java.awt.Label label10;
+    private java.awt.Label label11;
     private java.awt.Label label12;
     private java.awt.Label label13;
     private java.awt.Label label14;
@@ -1182,7 +1207,9 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtRua;
     private javax.swing.JTextField txtSeries;
     private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtUltimaAvaliacao;
     private javax.swing.JTextField txtValor;
     private javax.swing.JFormattedTextField txtVencimento;
+    private javax.swing.JTextField txtVencimentoAvaliacao;
     // End of variables declaration//GEN-END:variables
 }

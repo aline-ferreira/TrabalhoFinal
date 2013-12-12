@@ -59,10 +59,19 @@ public class frmAvaliacao extends javax.swing.JInternalFrame {
         txtQuadril.setText(String.valueOf(avaliacao.getQuadril()));
         txtIMC.setText(String.valueOf(avaliacao.getIMC()));
         txtPesoIdeal.setText(String.valueOf(avaliacao.getPesoIdeal()));
-        txtData.setText(String.valueOf(avaliacao.getData()));
-        txtVencimento.setText(String.valueOf(avaliacao.getVencimento()));
+        txtData.setValue((Date)avaliacao.getData());
+        txtVencimento.setValue((Date)avaliacao.getVencimento());
 
         // prencher atestado medico
+        
+        txtDataEmissao.setValue((Date)avaliacao.getAtestado().getDataEmissao());
+        txtMedico.setText(avaliacao.getAtestado().getMedico());
+        txtObservacao.setText(avaliacao.getAtestado().getObservacao());
+        
+        //preencher anamnese
+        txtDoenca.setText(avaliacao.getAnamnese().getDoenca());
+        txtRemedio.setText(avaliacao.getAnamnese().getRemedio());
+        txtAlergia.setText(avaliacao.getAnamnese().getRemedio());
     }
 
     public void carregaObjeto() {
