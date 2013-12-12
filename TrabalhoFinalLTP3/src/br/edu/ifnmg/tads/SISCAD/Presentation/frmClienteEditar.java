@@ -51,7 +51,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         atualizarTreinoMusculacao(treinos);
         List<Avaliacao> avaliacoes = cliente.getAvaliacoes();
         atualizarTabelaAvaliacoes(avaliacoes);
-        avaliacao= avaliacaoDAO.AbrirAvaliacaoRecente(cliente);
+        
         carregaCampos();
 
     }
@@ -64,8 +64,8 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             txtCPF.setText(cliente.getCpf());
             txtRG.setText(cliente.getRg());
             
-            txtUltimaAvaliacao.setText(String.valueOf(avaliacao.getData()));
-            txtVencimentoAvaliacao.setText(String.valueOf(avaliacao.getVencimento()));
+            //txtUltimaAvaliacao.setText(String.valueOf(avaliacao.getData()));
+           // txtVencimentoAvaliacao.setText(String.valueOf(avaliacao.getVencimento()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -84,7 +84,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             cliente.setRg(txtRG.getText());
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane,ex);
 
         }
 
@@ -179,8 +179,6 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         btnAdicionarMensalidade = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblMensalidades = new javax.swing.JTable();
-        label18 = new java.awt.Label();
-        txtDebito = new javax.swing.JTextField();
         txtVencimento = new javax.swing.JFormattedTextField();
 
         setClosable(true);
@@ -555,16 +553,17 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUltimaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVencimentoAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUltimaAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtVencimentoAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addContainerGap())
@@ -729,8 +728,6 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(tblMensalidades);
 
-        label18.setText("Debito:");
-
         txtVencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -742,11 +739,6 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(btnAdicionarMensalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 231, Short.MAX_VALUE)
-                        .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDebito, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -758,7 +750,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                             .addComponent(txtVencimento, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                             .addComponent(txtDesconto)
                             .addComponent(txtValor))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 197, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -783,10 +775,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                         .addComponent(btnAdicionarMensalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDebito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -799,11 +788,11 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
+                        .addGap(304, 304, 304)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(38, 38, 38)
                         .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addGap(26, 26, 26)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -820,7 +809,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -932,7 +921,7 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
         Telefone t = new Telefone();
         try {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Adicionar o telefone? ") == 0) {
-                t.setTelefone(Integer.parseInt(txtDDD.getText()));
+                t.setDd(Integer.parseInt(txtDDD.getText()));
                 t.setTelefone(Integer.parseInt(txtTelefone.getText()));
                 cliente.addTelefone(t);
                 atualizarTabelaTelefones(cliente.getTelefones());
@@ -1006,7 +995,13 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDataNascimentoActionPerformed
 
     private void tblAvaliacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAvaliacoesMouseClicked
-        
+        Object valor = tblAvaliacoes.getValueAt(tblAvaliacoes.getSelectedRow(), 0);
+        Avaliacao a = new Avaliacao();
+        a=avaliacaoDAO.AbrirAvaliacao((int)valor);
+        frmAvaliacao janela = new frmAvaliacao(cliente,a, dao);
+        this.getParent().add(janela);
+        janela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tblAvaliacoesMouseClicked
     private void atualizarTabelaEmails(List<Email> emails) {
 
@@ -1169,7 +1164,6 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     private java.awt.Label label15;
     private java.awt.Label label16;
     private java.awt.Label label17;
-    private java.awt.Label label18;
     private java.awt.Label label2;
     private java.awt.Label label27;
     private java.awt.Label label28;
@@ -1196,7 +1190,6 @@ public class frmClienteEditar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtDDD;
     private javax.swing.JFormattedTextField txtDataNascimento;
-    private javax.swing.JTextField txtDebito;
     private javax.swing.JTextField txtDesconto;
     private javax.swing.JTextField txtDuracao2;
     private javax.swing.JTextField txtEmail;

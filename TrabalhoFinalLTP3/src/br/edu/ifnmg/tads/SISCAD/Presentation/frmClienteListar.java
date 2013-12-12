@@ -37,6 +37,7 @@ public class frmClienteListar extends javax.swing.JInternalFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("IdCliente");
         model.addColumn("Nome");
+        model.addColumn("Data Nascimento");
         model.addColumn("CPF");
         model.addColumn("RG");
 

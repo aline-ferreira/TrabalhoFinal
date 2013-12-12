@@ -6,7 +6,8 @@
 
 package br.edu.ifnmg.tads.SISCAD.DomainModel;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class Pagamento {
     private Date data;
     private Double valor;
     private Mensalidade mensalidade;
-   // private List<MensalidadesPagamento> mensalidades;
+   
     private String formaPagamento;
     private Sessao sessao;
 

@@ -318,23 +318,18 @@ public class AvaliacaoDAO<T extends Avaliacao> extends Dao {
 
     }
  
- public Avaliacao AbrirAvaliacaoRecente(Cliente cliente){
+ public Avaliacao AbrirAvaliacao(int id){
      
     Avaliacao avaliacao = new Avaliacao();
     FuncionarioDAO  funcionario = new FuncionarioDAO();
     
      try{ 
-         PreparedStatement sql= getConexao().prepareStatement("select max(IdAvaliacao)from Avaliacao where IdCliente=?");
-         sql.setInt(1, cliente.getCodigo());
+        
+         avaliacao = new Avaliacao();
+         PreparedStatement sql= getConexao().prepareStatement("select *  from avaliacao where IdAvaliacao=?");
+         sql.setInt(1, id);
       
-         
-         ResultSet result = sql.executeQuery();
-         avaliacao.setCodigo(result.getInt("max(IdAvaliacao)"));
-            
-         PreparedStatement sql2= getConexao().prepareStatement("select * avaliacao from where IdAvaliacao=?");
-         sql2.setInt(1, avaliacao.getCodigo());
-      
-         ResultSet resultado = sql2.executeQuery();
+         ResultSet resultado = sql.executeQuery();
             
          if(resultado.next()){
             avaliacao.setCodigo(resultado.getInt("IdAvaliacao"));

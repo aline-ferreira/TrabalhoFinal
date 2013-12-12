@@ -3,13 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package br.edu.ifnmg.tads.SISCAD.DomainModel;
+package br.edu.ifnmg.tads.SISCAD.Presentation;
 
 import br.edu.ifnmg.tads.SISCAD.DataAcess.ClienteDAO;
+import br.edu.ifnmg.tads.SISCAD.DataAcess.PagamentoDAO;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Cliente;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Mensalidade;
+import br.edu.ifnmg.tads.SISCAD.DomainModel.Pagamento;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
+
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,17 +30,24 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
      */
     ClienteDAO clienteDAO;
     List<Mensalidade> mensalidades;
-    Cliente cliente= new Cliente();
+    Cliente cliente = new Cliente();
+    Pagamento pagamento;
+    PagamentoDAO pagamentoDAO;
+    Mensalidade mensalidade;
+
     public frmPagamentoCadastrar() {
-        
+
         initComponents();
-        clienteDAO= new ClienteDAO();
+        mensalidade= new Mensalidade();
+        clienteDAO = new ClienteDAO();
         carregaClientes();
-         Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
-         cliente= clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
-         mensalidades= new ArrayList();
-         mensalidades= cliente.getMensalidade();
-         atualizarTabelaMensalidades(mensalidades);
+        pagamentoDAO = new PagamentoDAO();
+        pagamento = new Pagamento();
+        Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
+        cliente = clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
+        mensalidades = new ArrayList();
+        mensalidades = cliente.getMensalidade();
+        atualizarTabelaMensalidades(mensalidades);
     }
 
     private void carregaClientes() {
@@ -45,8 +59,29 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
             cbxClientes.addItem(c);
         }
     }
-    
-    
+
+    public void carregaObjeto() {
+        try {
+            pagamento.setCliente(cliente);
+            pagamento.setData(new Date());
+            pagamento.setMensalidade(mensalidade);
+            pagamento.setValor(Double.parseDouble(txtValorPagar.getText()));
+
+            if (btnDinheiro.isSelected()) {
+                pagamento.setFormaPagamento("Dinheiro");
+            }
+            if (btnCheque.isSelected()) {
+                pagamento.setFormaPagamento("cheque");
+            }
+
+            if (btnCartao.isSelected()) {
+                pagamento.setFormaPagamento("cartao");
+            }
+
+        } catch (Exception ex) {
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,9 +92,9 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
         label1 = new java.awt.Label();
         cbxClientes = new javax.swing.JComboBox();
         label2 = new java.awt.Label();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        btnDinheiro = new javax.swing.JRadioButton();
+        btnCheque = new javax.swing.JRadioButton();
+        btnCartao = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -71,6 +106,7 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
         txtDesconto = new javax.swing.JTextField();
         txtValorPagar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -93,14 +129,14 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
 
         label2.setText("Forma de  Pagamento:");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Dinheiro");
+        buttonGroup1.add(btnDinheiro);
+        btnDinheiro.setText("Dinheiro");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Cheque");
+        buttonGroup1.add(btnCheque);
+        btnCheque.setText("Cheque");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("Cartão de Crédito");
+        buttonGroup1.add(btnCartao);
+        btnCartao.setText("Cartão de Crédito");
 
         jButton2.setText("Abrir Mensalidade");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,9 +162,9 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))))
+                            .addComponent(btnDinheiro)
+                            .addComponent(btnCheque)
+                            .addComponent(btnCartao))))
                 .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,11 +179,11 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
                 .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1))
+                    .addComponent(btnDinheiro))
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(btnCheque)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
+                .addComponent(btnCartao)
                 .addContainerGap(175, Short.MAX_VALUE))
         );
 
@@ -183,7 +219,20 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
 
         label4.setText("Valor a pagar:");
 
+        txtValor.setEditable(false);
+
+        txtDesconto.setEditable(false);
+
+        txtValorPagar.setEditable(false);
+
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,34 +256,39 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
                                     .addComponent(txtValor)
                                     .addComponent(txtDesconto)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(120, 120, 120))
         );
 
         jTabbedPane1.addTab("Mensalidade", jPanel2);
@@ -264,44 +318,73 @@ public class frmPagamentoCadastrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxClientesActionPerformed
 
     private void cbxClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxClientesMouseClicked
-      Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
-      mensalidades= clienteSelecionado.getMensalidade();
-      atualizarTabelaMensalidades(mensalidades);
+        Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
+        mensalidades = clienteSelecionado.getMensalidade();
+        atualizarTabelaMensalidades(mensalidades);
     }//GEN-LAST:event_cbxClientesMouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-         
+
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           
-        Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem(); 
-        cliente= clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
-         //mensalidades= new ArrayList();
-         mensalidades= cliente.getMensalidade();
-         atualizarTabelaMensalidades(mensalidades);
-        
+
+        Cliente clienteSelecionado = (Cliente) cbxClientes.getSelectedItem();
+        cliente = clienteDAO.AbrirCliente(clienteSelecionado.getCodigo());
+        //mensalidades= new ArrayList();
+        mensalidades = cliente.getMensalidade();
+        atualizarTabelaMensalidades(mensalidades);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tblMensalidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMensalidadesMouseClicked
-       Object valor = tblMensalidades.getValueAt(tblMensalidades.getSelectedRow(),0);
-       Double pagar;
-       Mensalidade m = clienteDAO.AbrirMensalidade((int)valor);
-       txtValor.setText(String.valueOf(m.getValor()));
-       txtDesconto.setText(String.valueOf(m.getDesconto()));
-       pagar= m.getValor()-m.getDesconto();
-       txtValorPagar.setText(String.valueOf(pagar));
-      
-  
+        Object valor = tblMensalidades.getValueAt(tblMensalidades.getSelectedRow(), 0);
+        Double pagar;
+        mensalidade = new Mensalidade();
+        mensalidade = clienteDAO.AbrirMensalidade((int) valor);
+        txtValor.setText(String.valueOf(mensalidade.getValor()));
+        txtDesconto.setText(String.valueOf(mensalidade.getDesconto()));
+        pagar = mensalidade.getValor() - mensalidade.getDesconto();
+        txtValorPagar.setText(String.valueOf(pagar));
+
+
     }//GEN-LAST:event_tblMensalidadesMouseClicked
 
-    private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) {  
-  
-}  
-private void atualizarTabelaMensalidades(List<Mensalidade> mensalidades) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Salvar?") == 0) {
+
+                carregaObjeto();
+
+                if (pagamentoDAO.Salvar(pagamento)) {
+                    mensalidade.setStatus("pg");
+                    cliente.addMensalidade(mensalidade);
+                    clienteDAO.Salvar(cliente);
+                    mensalidades = cliente.getMensalidade();
+                    atualizarTabelaMensalidades(mensalidades);
+                    JOptionPane.showMessageDialog(rootPane, "Pagamento efetuado com sucesso!!");
+                    this.dispose();
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Operação cancelada!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar!!" + ex);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) {
+
+    }
+
+    private void atualizarTabelaMensalidades(List<Mensalidade> mensalidades) {
 
         DefaultTableModel model = new DefaultTableModel();
-
+        model.addColumn("Codigo");
         model.addColumn("Valor");
         model.addColumn("Vencimento");
         model.addColumn("Desconto");
@@ -309,11 +392,14 @@ private void atualizarTabelaMensalidades(List<Mensalidade> mensalidades) {
 
         for (Mensalidade m : mensalidades) {
             Vector valores = new Vector();
-            valores.add(0, m.getValor());
-            valores.add(1, m.getDataVencimento());
-            valores.add(2, m.getDesconto());
-            valores.add(3, m.getStatus());
-            model.addRow(valores);
+            if (!"pg".equals(m.getStatus())) {
+                valores.add(0, m.getCodigo());
+                valores.add(1, m.getValor());
+                valores.add(2, m.getDataVencimento());
+                valores.add(3, m.getDesconto());
+                valores.add(4, m.getStatus());
+                model.addRow(valores);
+            }
         }
         tblMensalidades.setModel(model);
         tblMensalidades.repaint();
@@ -321,15 +407,16 @@ private void atualizarTabelaMensalidades(List<Mensalidade> mensalidades) {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Valor;
+    private javax.swing.JRadioButton btnCartao;
+    private javax.swing.JRadioButton btnCheque;
+    private javax.swing.JRadioButton btnDinheiro;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbxClientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private java.awt.Label label1;

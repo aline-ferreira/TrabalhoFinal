@@ -7,7 +7,7 @@
 package br.edu.ifnmg.tads.SISCAD.Presentation;
 
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
-import br.edu.ifnmg.tads.SISCAD.DomainModel.frmPagamentoCadastrar;
+import br.edu.ifnmg.tads.SISCAD.Presentation.frmPagamentoCadastrar;
 
 /**
  *

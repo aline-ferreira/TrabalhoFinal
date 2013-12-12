@@ -20,7 +20,7 @@ public class PagamentoDAO extends Dao {
     public boolean Salvar(Pagamento obj){
         if(obj.getCodigo()==0){
             try {
-                //Salvar(obj.getPessoa());
+              
                 PreparedStatement sql = getConexao().prepareStatement("insert into Pagamento(data,IdMensalidade,formaPagamento,valor,IdCliente) values(?,?,?,?,?)");
 
                 sql.setDate(1, new java.sql.Date(obj.getData().getTime()));
