@@ -8,6 +8,8 @@ package br.edu.ifnmg.tads.SISCAD.Presentation;
 
 import br.edu.ifnmg.tads.SISCAD.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.SISCAD.Presentation.frmPagamentoCadastrar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +42,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
+        mnuSair = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         mnuFuncionarios = new javax.swing.JMenuItem();
         mnuClientes = new javax.swing.JMenuItem();
@@ -61,8 +64,17 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu4.setText("Sistema");
-        jMenuBar1.add(jMenu4);
+        mnuSair.setText("Sistema");
+
+        jMenuItem4.setText("Sair");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        mnuSair.add(jMenuItem4);
+
+        jMenuBar1.add(mnuSair);
 
         jMenu5.setText("Cadastros");
 
@@ -174,6 +186,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    
+        try {
+            
+            frmLogin janela = new frmLogin();
+
+            janela.setVisible(true);
+            setVisible(false);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,7 +241,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
@@ -221,9 +248,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem mnu;
     private javax.swing.JMenuItem mnuClientes;
     private javax.swing.JMenuItem mnuExercicio;
     private javax.swing.JMenuItem mnuFuncionarios;
+    private javax.swing.JMenu mnuSair;
     // End of variables declaration//GEN-END:variables
 }
